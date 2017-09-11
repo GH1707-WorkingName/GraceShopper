@@ -2,6 +2,7 @@ const express = require('express');
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
 const PORT = 3000;
+const path = require('path');
 
 const db = require('./db');
 const session = require('express-session');
@@ -25,10 +26,10 @@ app.use(session({
   resave: false,
   saveUninitialized: true
 }));
-
 app.use(require('./middleware/passport'))
 
-app.use('/api', require('./api'))
+// app.use('/auth', require('./auth'));
+app.use('/api', require('./api'));
 
 //if doesn't hit backend routes, send index.html
 app.get('*', (req, res, next) => res.sendFile(path.join(__dirname, '../public/index.html')))
