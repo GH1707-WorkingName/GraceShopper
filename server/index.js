@@ -1,18 +1,32 @@
-const express = require('express')
-const volleyball = require('volleyball')
-const bodyParser = require('body-parser')
-const PORT = 3000
-const path = require('path')
+const express = require('express');
+const volleyball = require('volleyball');
+const bodyParser = require('body-parser');
+const PORT = 3000;
 
-//const db = require('');
+const db = require('./db');
+const session = require('express-session');
+const SequelizeStore = require('connect-session-sequelize')(session.Store);
+const dbStore = new SequelizeStore({ db: db });
+const passport = require('passport');
 
 const app = express()
+
+dbStore.sync();
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
 app.use(volleyball)
 
-app.use(express.static(path.join(__dirname, '../public')))
+app.use(require('./middleware/statics'))
+
+app.use(session({
+  secret: process.env.SESSION_SECRET || "eggplant",
+  store: dbStore,
+  resave: false,
+  saveUninitialized: true
+}));
+
+app.use(require('./middleware/passport'))
 
 app.use('/api', require('./api'))
 
@@ -26,9 +40,9 @@ app.use((err, req, res, next) => {
   res.status(err.status || 500).send(err.message || 'Internal server error');
 })
 
-// db.sync()
-// .then( () => {
-  app.listen(3000, () => console.log(`Listening on port 3000...`))
-//   }
-// )
-// .catch( () => console.log('Error with database sync') )
+db.sync()
+.then( () => {
+  app.listen(3000, () => console.log(`KEEPING IT ON port 3000...`))
+  }
+)
+.catch( () => console.log('Error with database sync') )
