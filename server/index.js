@@ -10,14 +10,14 @@ const app = express()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
-app.use(volleyball('dev'))
+app.use(volleyball)
 
-app.use(express.static(path.join(__dirname, 'public')))
+app.use(express.static(path.join(__dirname, '../public')))
 
 app.use('/api', require('./api'))
 
 //if doesn't hit backend routes, send index.html
-app.get('*', (req, res, next) => res.sendFile(path.join(__dirname, 'index.html')))
+app.get('*', (req, res, next) => res.sendFile(path.join(__dirname, '../public/index.html')))
 
 //error-handler
 app.use((err, req, res, next) => {
