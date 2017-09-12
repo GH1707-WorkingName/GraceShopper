@@ -1,14 +1,14 @@
+if (process.env.NODE_ENV === 'development') {
+  require('./localSecrets'); // this will mutate the process.env object with your secrets.
+}
 const express = require('express');
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
-const PORT = 3000;
 const path = require('path');
-
 const db = require('./db');
 const session = require('express-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 const dbStore = new SequelizeStore({ db: db });
-const passport = require('passport');
 
 const app = express()
 

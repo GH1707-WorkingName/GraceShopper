@@ -4,27 +4,32 @@ const _ = require('lodash');
 const db = require('./_db');
 
 const User = db.define('user', {
-  email : {
+  name: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  email: {
     type: Sequelize.STRING,
     unique:true,
     allowNull: false,
   },
   password: {
-    type:Sequelize.STRING,
+    type: Sequelize.STRING,
     allowNull:false,
     validate: {
       len: [3, 20]
     }
   },
+  googleId: Sequelize.STRING,
   salt: {
     type: Sequelize.STRING
-  }  
+  }
 }, {
   hooks: {
     beforeCreate: setSaltAndPassword,
     beforeUpdate: setSaltAndPassword
   }
-}); 
+});
 
 User.prototype.correctPassword = function (candidatePassword) {
   return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
