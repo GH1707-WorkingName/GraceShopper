@@ -25,6 +25,7 @@ export const fetchProducts = () => {
       .then(allProducts => {
         dispatch(setAllProducts(allProducts))
       })
+      // OB/FJF: low hanging fruit for error reporting to users: react-toastr
       .catch(console.error)
   }
 }
