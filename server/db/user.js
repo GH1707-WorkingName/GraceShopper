@@ -4,7 +4,11 @@ const _ = require('lodash');
 const db = require('./_db');
 
 const User = db.define('user', {
-  name: {
+  firstName: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  lastName: {
     type: Sequelize.STRING,
     allowNull: false,
   },
@@ -28,10 +32,13 @@ const User = db.define('user', {
     allowNull: false,
     defaultValue: false
   },
-  googleId: Sequelize.STRING,
+  googleId: {
+    type: Sequelize.STRING
+  },
   salt: {
     type: Sequelize.STRING
   }
+
 }, {
   hooks: {
     beforeCreate: setSaltAndPassword,
