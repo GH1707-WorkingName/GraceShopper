@@ -13,12 +13,20 @@ const User = db.define('user', {
     unique:true,
     allowNull: false,
   },
+  address: {
+    type: Sequelize.STRING
+  },
   password: {
     type: Sequelize.STRING,
     allowNull:false,
     validate: {
       len: [3, 20]
     }
+  },
+  isAdmin: {
+    type: Sequelize.BOOLEAN,
+    allowNull: false,
+    defaultValue: false
   },
   googleId: Sequelize.STRING,
   salt: {
@@ -60,4 +68,4 @@ function setSaltAndPassword (user) {
   }
 }
 
-module.exports = User
+module.exports = User;
