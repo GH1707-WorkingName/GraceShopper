@@ -11,7 +11,7 @@ const products = [
   { title: 'Clown Town', description: 'Lead a roving band of your best friends through the desert as their clown leader.', imageUrl: 'https://stuckincustoms.smugmug.com/Burning-Man/i-fPS7jhQ/0/900x517/Trey%20Ratcliff%20-%20Burning%20Man%20-%20StuckInCustoms%20DOT%20com%20%20-%2044-900x517.jpg', quantity: 10, price: 100 },
   { title: 'Cuckoo Cloud Land', description: 'You took too many drugs.', imageUrl: 'https://1.bp.blogspot.com/-pWhUJOR5ahk/WUfaUpBngXI/AAAAAAAAFzs/i1eVSNM-NQsB5lILfhDo7ovsUXzqKtj2gCLcBGAs/s1600/Copywriter.jpg', quantity: 10, price: 100 },
   { title: 'Mad Hatter\'s Tea Party', description: 'Have tea and crumpets with Johnny Depp!', imageUrl: 'https://i0.wp.com/writingstudio.co.za/wp-content/uploads/2015/10/alice-in-wonderland-throught-the-looking-glass-cast-and-story-details.jpg', quantity: 10, price: 100 },
-  { title: 'Labrynth Ball', description: 'Dance with the Goblin King, David Bowie, in a dreamy wonderland.', imageUrl: 'https://i.ytimg.com/vi/dFyufUCTCh8/maxresdefault.jpg', quantity: 10, price: 100 },
+  { title: 'Labyrinth Ball', description: 'Dance with the Goblin King, David Bowie, in a dreamy wonderland.', imageUrl: 'https://i.ytimg.com/vi/dFyufUCTCh8/maxresdefault.jpg', quantity: 10, price: 100 },
   { title: 'The Chocolate Factory', description: 'Everything is made of chocoloate!  Make sure you don\'t turn into a blueberry!', imageUrl: 'http://wfiles.brothersoft.com/t/the-chocolate-factory_72421-1920x1200.jpg', quantity: 10, price: 100 },
   { title: 'Nightmare', description: 'Wake up in your worst nightmare!', imageUrl: 'https://images1.laweekly.com/imager/u/original/8035676/abt_pp.jpg', quantity: 10, price: 100 },
   { title: 'PuppyVille', description: 'Everyone is a puppy that takes care of themselves, but you get to play with them all day!', imageUrl: 'http://www.kingwestvets.com/wp-content/uploads/2013/01/puppies-in-a-bathtub.jpg', quantity: 10, price: 100 },
@@ -29,7 +29,7 @@ const main = () => {
  console.log('Syncing db...');
  db.sync({ force: false })
    .then(() => {
-     console.log('Seeding databse...');
+     console.log('Seeding database...');
      return seed();
    })
    .catch(err => {
