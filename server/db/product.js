@@ -1,6 +1,7 @@
 const Sequelize = require ('sequelize');
 const db = require('./_db');
 
+// OB/FJF: consider validations (not urgent)
 const Product = db.define('product', {
   title: {
     type: Sequelize.STRING,
@@ -19,12 +20,13 @@ const Product = db.define('product', {
     allowNull:false
   },
   price: {
-    type: Sequelize.INTEGER,
+    type: Sequelize.INTEGER, // OB/FJF: great!
     allowNull: false
   }
 }, {
   getterMethods: {
     price: function() {
+      // OB/FJF: inconsistent code styling (semicolons)
       return this.getDataValue('price') / 100
     }
   },
