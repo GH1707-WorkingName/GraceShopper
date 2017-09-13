@@ -37,6 +37,7 @@ const main = () => {
      console.log(err.stack);
    })
    .then(() => {
+     console.log('Successfully seeded database')
      db.close();
      return null;
    });
