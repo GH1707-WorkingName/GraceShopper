@@ -2,9 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 
-export const AllProducts = (props) => {
-  const {allProducts} = props
-  console.log(props)
+export const AllProducts = ({allProducts}) => {
   return (
     <div>
       {
@@ -30,5 +28,5 @@ const mapStateToProps = state => {
   }
 }
 
-const Container = connect(mapStateToProps)(AllProducts)
-export default Container
+const AllProductsContainer = connect(mapStateToProps)(AllProducts)
+export default AllProductsContainer

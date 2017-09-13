@@ -1,17 +1,17 @@
 import axios from 'axios';
 
 // ACTION TYPES
-const SET_ALL_PRODUCTS = 'SET_ALL_PRODUCTS';
+const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 
 // ACTION CREATORS
-const setAllProducts = allProducts => {
-  return {type: SET_ALL_PRODUCTS, allProducts};
+const getAllProducts = allProducts => {
+  return {type: GET_ALL_PRODUCTS, allProducts};
 }
 
 // REDUCER
 export default (products = [], action) => {
   switch (action.type) {
-    case SET_ALL_PRODUCTS:
+    case GET_ALL_PRODUCTS:
       return action.allProducts
     default:
       return products
@@ -24,7 +24,7 @@ export const fetchAllProducts = () => {
     return axios.get('/api/products')
       .then(res => res.data)
       .then(allProducts => {
-        dispatch(setAllProducts(allProducts))
+        dispatch(getAllProducts(allProducts))
       })
       .catch(console.error)
   }
