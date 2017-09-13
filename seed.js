@@ -38,7 +38,7 @@ const seed = () => {
 
 const main = () => {
  console.log('Syncing db...');
- db.sync({ force: true })
+ db.sync()
    .then(() => {
      console.log('Seeding database...');
      return seed();
