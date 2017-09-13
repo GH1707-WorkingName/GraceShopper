@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('./_db');
-const Item = require('./item');
 const User = require('./user');
+const Product = require('./product');
 
 
 //associations here
