@@ -1,13 +1,8 @@
 import { combineReducers } from 'redux';
+import allProductsReducer from './allProducts'
 
-//ACTION TYPES
+export default combineReducers({
+  allProducts: allProductsReducer
+})
 
-//ACTION CREATORS
-
-//THUNK CREATORS
-
-//REDUCER
-
-export default function reducer (state = {}, action) {
-  return state;
-}
+export * from './allProducts'
