@@ -27,6 +27,7 @@ const users = [
   {firstName: 'Michelle', lastName: 'Scharfstein', email: 'michellelovessalad@gmail.com', password: 'goCavs'}
 ]
 
+
 const reviews = [
   {rating: '3', description: 'This was ok'}, 
   {rating: '4', description: 'This was more than ok'}, 
