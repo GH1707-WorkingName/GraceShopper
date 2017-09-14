@@ -5,7 +5,7 @@ import {fetchAllProducts} from './reducers';
 import store from './store';
 import Footer from './components/Footer';
 import Navbar from './components/Navbar';
-import Banner from './components/Banner';
+import Signup from './components/Signup';
 
 // import navbar, footer, all Components
 
@@ -20,6 +20,7 @@ export default class Index extends Component {
         <Navbar />
           <Switch>
             <Route exact path="/" component={AllProducts} />
+            <Route exact path="/signup" component={Signup} />
           </Switch>
         <Footer />
       </div>
