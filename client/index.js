@@ -19,6 +19,7 @@ export default class Index extends Component {
         <Navbar />
           <Switch>
             <Route exact path="/" component={AllProducts} />
+            <Route exact path="/cart" component={Cart} />
           </Switch>
         <Footer />
       </div>
