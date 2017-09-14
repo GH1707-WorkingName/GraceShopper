@@ -45,5 +45,5 @@ const Cart = props => {
   )
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(Cart);
+export default Cart;
 
