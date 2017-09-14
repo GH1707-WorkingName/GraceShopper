@@ -8,8 +8,8 @@ const DELETE_ITEM = 'DELETE_ITEM';
 const UPDATE_ITEM = 'UPDATE_ITEM';
 
 // ACTION CREATORS
-const createNewOrder = order => {
-  return {type: CREATE_ORDER, newOrder}
+const createNewOrder = (newOrder, item) => {
+  return {type: CREATE_ORDER, newOrder, item}
 }
 
 const setExistingOrder = order => {
@@ -46,5 +46,11 @@ export default (currentOrder = [], action) => {
   }
 }
 
-
-//THUNK
+//THUNK 
+// where item is used to Order.create({where: products: [item]});
+export const initNewOrderWithItem = item => dispatch => {
+  axios.post('/api/orders', item)
+    .then(res => dispatch(create(res.data)))
+    .catch(console.error)
+}
+  
