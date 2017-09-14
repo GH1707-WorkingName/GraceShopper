@@ -1,5 +1,5 @@
 if (process.env.NODE_ENV === 'development') {
-  require('./localSecrets'); // this will mutate the process.env object with your secrets.
+  require('./secrets'); // this will mutate the process.env object with your secrets.
 }
 const express = require('express');
 const volleyball = require('volleyball');
@@ -43,7 +43,9 @@ app.use((err, req, res, next) => {
 
 db.sync()
 .then( () => {
-  app.listen(3000, () => console.log(`KEEPING IT ON port 3000...`))
+   app.listen(3000, () => console.log(`KEEPING IT ON port 3000...`))
   }
 )
 .catch( () => console.log('Error with database sync') )
+
+module.exports = app

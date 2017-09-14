@@ -7,7 +7,7 @@ import Index from './client/';
 import './client/index.scss';
 
 ReactDOM.render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <Router>
       <Index />
     </Router>

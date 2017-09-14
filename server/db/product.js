@@ -22,10 +22,14 @@ const Product = db.define('product', {
   },
   quantity: {
     type: Sequelize.INTEGER,
+<<<<<<< HEAD
     allowNull:false,
     validate: {
       min: 0
     }
+=======
+    allowNull: false
+>>>>>>> 0e2ffae702e943522ce1a9b85daf1fb3c6933781
   },
   price: {
     type: Sequelize.INTEGER,

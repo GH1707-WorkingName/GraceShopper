@@ -1,10 +1,12 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
+import Banner from './Banner'
 
 export const AllProducts = ({allProducts}) => {
   return (
     <div>
+    <Banner />
       {
         allProducts &&
           allProducts.map(product => {
@@ -22,7 +24,7 @@ export const AllProducts = ({allProducts}) => {
   )
 }
 
-const mapStateToProps = state => {
+export const mapStateToProps = state => {
   return {
     allProducts: state.products
   }

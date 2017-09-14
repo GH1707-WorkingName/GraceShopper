@@ -1,13 +1,13 @@
 const db =  require('../server/db')
 const Product = db.models.product
 const app = require('../server');
-//import chai from 'chai';
-// import chaiProperties from 'chai-properties';
-// import chaiThings from 'chai-things';
-// chai.use(chaiProperties);
-// chai.use(chaiThings);
+const chai = require('chai');
+//const chaiProperties = require('chai-properties');
+const chaiThings = require('chai-things');
+//chai.use(chaiProperties);
+chai.use(chaiThings);
 const expect = require('chai').expect;
-const supertest = require('supertest-as-promised');
+const supertest = require('supertest');
 //const sinon = require('sinon');
 
 describe('// Product Routes //', () => {
@@ -18,7 +18,7 @@ describe('// Product Routes //', () => {
   describe('HTTP Server', () => {
     let agent;
     beforeEach('Set up agent for testing', () => {
-      agent = supertest.agent(app)
+      agent = supertest(app)
     })
 
     describe('api routes', () => {
@@ -36,15 +36,15 @@ describe('// Product Routes //', () => {
           })
       })
 
-      describe('products', () => {
+      describe('/api/products', () => {
         it('serves up all products on request on GET /api/products', () => {
           return agent.get('/api/products')
             .expect(200)
             .then(res => {
               expect(res.body).to.be.an('array')
               expect(res.body.length).to.be.equal(2)
-              expect(res.body).to.contain.thing.with('id', product1)
-              expect(res.body).to.contain.thing.with('id', product2)
+              expect(res.body).to.contain.thing.with.property('id', product1)
+              expect(res.body).to.contain.thing.with.property('id', product2)
             })
         })
       })
