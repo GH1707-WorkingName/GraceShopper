@@ -1,7 +1,8 @@
 const Sequelize = require ('sequelize');
 const db = require('./_db');
-const Order_Product = require('./order_product_join')
-//import join here
+const Order_Product = require('./order_product_join');
+const Product = require('./product');
+
 
 const Order = db.define('order', {
   purchaseDate: {
@@ -19,9 +20,9 @@ const Order = db.define('order', {
           orderId: id
         }
       })
-        .then(function(orders){
-          return orders.reduce(function(accumulator, order){
-            return accumulator+order.quantity 
+        .then(function(orderLines){
+          return orderLines.reduce(function(accumulator, line){
+            return accumulator+line.quantity 
           }, 0)
         })
     }
@@ -29,8 +30,20 @@ const Order = db.define('order', {
   }, 
   totalCost: {
     type: Sequelize.VIRTUAL, 
-    get: function(){
-      return 
+    get: function(id){
+      Order_Product.findAll({
+        where: {
+          orderId: id
+        }
+      })
+      .then(function(orderLines) {
+        return orderLines.reduce(function(accumulator, line) {
+          return Product.findOne({where: { id: line.productId }})
+          .then(product => {
+            return accumulator + (line.quantity * product.price)
+          })
+        }, 0)
+      })
     }
   }
 })
