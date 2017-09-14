@@ -5,6 +5,7 @@ import {fetchAllProducts} from './reducers';
 import store from './store';
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
+import Cart from './components/Cart'
 
 // import navbar, footer, all Components
 
