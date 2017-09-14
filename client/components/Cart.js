@@ -38,7 +38,6 @@ export const Cart = () => {
                   <span>{ item.name }</span>
                 </div>
               </td>
-              <td> </td>
               <td>{ item.quantity }</td>
               <td>{ item.price }</td>
               <td> 
@@ -55,7 +54,7 @@ export const Cart = () => {
       </tbody>
     </table>
     <Link to="/checkout">
-    <button>Checkout</button>
+      <button>Checkout</button>
     </Link>
   </div>
   )

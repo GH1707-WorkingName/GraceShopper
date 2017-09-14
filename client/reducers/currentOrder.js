@@ -1,26 +1,21 @@
 import axios from 'axios';
 
 // ACTION TYPES 
-const CREATE_ORDER = 'CREATE_ORDER';
 const SET_ORDER = 'SET_ORDER';
 const ADD_ITEM = 'ADD_ITEM';
 const DELETE_ITEM = 'DELETE_ITEM';
 const UPDATE_ITEM = 'UPDATE_ITEM';
 
 // ACTION CREATORS
-const createNewOrder = (newOrder, item) => {
-  return {type: CREATE_ORDER, newOrder, item}
+const setOrder = order => {
+  return {type: SET_ORDER, order}
 }
 
-const setExistingOrder = order => {
-  return {type: SET_ORDER, existingOrder}
-}
-
-const addNewItemToOrder = item => {
+const addNewItem = item => {
   return {type: ADD_ITEM, item}
 }
 
-const deleteItemFromOrder = item => {
+const deleteItem = item => {
   return {type:DELETE_ITEM, itemId}
 }
 
@@ -32,10 +27,8 @@ const updateExistingItem = item => {
 // REDUCER
 export default (currentOrder = [], action) => {
   switch(action.type) {
-    case CREATE_ORDER: 
-      return action.newOrder;
     case SET_ORDER: 
-      return action.existingOrder; 
+      return action.order; 
     case ADD_ITEM: 
       return [action.item, ...currentOrder];
     case DELETE_ITEM:
@@ -47,10 +40,10 @@ export default (currentOrder = [], action) => {
 }
 
 //THUNK 
-// where item is used to Order.create({where: products: [item]});
-export const initNewOrderWithItem = item => dispatch => {
-  axios.post('/api/orders', item)
-    .then(res => dispatch(create(res.data)))
+export const setCurrentOrder = order => dispatch => {
+  axios.post(`/api/order/${order.id}`)
+    .then(res => res.data)
+    .then(order => dispatch(setOrder(order)))
     .catch(console.error)
 }
   
