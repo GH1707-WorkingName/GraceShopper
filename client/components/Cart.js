@@ -3,7 +3,7 @@ import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
 export const Cart = () => {
-  // replace below const with order from mapStateToProps below
+  // delete below const when  order from mapStateToProps is accessible
   const order = [
     {
       id: 1,
@@ -24,6 +24,7 @@ export const Cart = () => {
           <th>Quantity</th>
           <th>Price</th>
           <th>Total</th>
+          <th> </th>
         </tr>
       </thead>
       <tbody>
@@ -32,7 +33,6 @@ export const Cart = () => {
             <tr key={item.id}>
               <td>
                 <div>
-                  <button> X </button>
                   <Link to={`/products/${item.id}`} />
                   <img src={ item.imgUrl } />
                   <span>{ item.name }</span>
@@ -45,6 +45,9 @@ export const Cart = () => {
                 { 
                   // CALCULATED TOTAL
                 }
+              </td>
+              <td> 
+                <button> X </button>
               </td>
             </tr>
           ))
