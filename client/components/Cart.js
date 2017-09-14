@@ -1,9 +1,8 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 
-const Cart = props => {
-  const orderItems = props.currPendingOrder; 
+export const Cart = ({order}) => {
     return ( 
       <div>
       <div><h1>Shopping Cart</h1></div>
@@ -11,7 +10,8 @@ const Cart = props => {
         <thead>
           <tr>
             <th>Item</th>
-            <th></th>
+            <th> </th>
+            <th> </th>
             <th>Quantity</th>
             <th>Price</th>
             <th>Total</th>
@@ -19,7 +19,7 @@ const Cart = props => {
         </thead>
         <tbody>
           {
-            orderItems && orderItems.map( item => (
+            order && order.map( item => (
               <tr key={item.id}>
                 <td>
                   <div>
@@ -31,7 +31,7 @@ const Cart = props => {
                 <td>{ item.name }</td>
                 <td>{ item.quantity }</td>
                 <td>{ item.price }</td>
-                <td>( { item.name } * { item.quantity } )</td>
+                <td></td>
               </tr>
             ))
           }
@@ -45,5 +45,12 @@ const Cart = props => {
   )
 }
 
-export default Cart;
+const mapStateToProps = state => {
+  return {
+    order:state.currentOrder
+  }
+} 
 
+const CartContainer = connect(mapStateToProps)(Cart)
+
+export default CartContainer;
