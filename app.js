@@ -9,7 +9,7 @@ import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 
 ReactDOM.render(
-  <Provider store = {store}>
+  <Provider store={store}>
     <Router>
       <Index />
     </Router>
