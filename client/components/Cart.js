@@ -31,19 +31,22 @@ export const Cart = ({order}) => {
                 <td>{ item.name }</td>
                 <td>{ item.quantity }</td>
                 <td>{ item.price }</td>
-                <td></td>
+                <td> 
+                  { 
+                    // CALCULATED TOTAL
+                  }
+                </td>
               </tr>
             ))
           }
         </tbody>
       </table>
-      <table>
-       { //  PUT total here and buttons to go to payment options 
-        }
-      </table>
+      <Link to="/checkout">
+      <button>Checkout</button>
+      </Link>
     </div>
   )
-}
+} 
 
 const mapStateToProps = state => {
   return {
