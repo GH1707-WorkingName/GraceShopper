@@ -10,7 +10,7 @@ export const Cart = () => {
       name: `ProductName`,
       quantity: 2,
       price: '2343.99', 
-      imgUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
+      imageUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
     }
   ]
   return ( 
@@ -34,7 +34,7 @@ export const Cart = () => {
               <td>
                 <div>
                   <Link to={`/products/${item.id}`} />
-                  <img src={ item.imgUrl } />
+                  <img src={ item.imageUrl } />
                   <span>{ item.name }</span>
                 </div>
               </td>

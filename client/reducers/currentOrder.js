@@ -15,7 +15,7 @@ const addNewItem = item => {
   return {type: ADD_ITEM, item}
 }
 
-const deleteItem = item => {
+const deleteItem = itemId => {
   return {type:DELETE_ITEM, itemId}
 }
 
