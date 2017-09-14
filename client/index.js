@@ -5,12 +5,8 @@ import {fetchAllProducts} from './reducers';
 import store from './store';
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-<<<<<<< HEAD
-import Banner from './components/Banner'
-=======
 import Cart from './components/Cart'
 
->>>>>>> 0e2ffae702e943522ce1a9b85daf1fb3c6933781
 // import navbar, footer, all Components
 
 export default class Index extends Component {
