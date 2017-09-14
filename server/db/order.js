@@ -16,7 +16,6 @@ const Order = db.define('order', {
 
  
 Order.prototype.totalQuantity = function(id) {
-    console.log("in totalQuantity")
     return Order_Product.findAll({
       where: {
         orderId: id
@@ -40,7 +39,6 @@ Order.prototype.totalCost = function(id) {
       }
     })
     .then(function(orderLines) {
-      console.log('orderLines', orderLines)
       return orderLines.reduce(function(accumulator, line) {
         return accumulator + (line.quantity * line.purchasePrice)
       }, 0)
