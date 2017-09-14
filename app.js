@@ -5,7 +5,6 @@ import { Provider } from 'react-redux';
 import store from './client/store.js';
 import Index from './client/';
 import './client/index.scss';
-import Bootstrap from 'bootstrap/dist/css/bootstrap.css';
 
 
 ReactDOM.render(
