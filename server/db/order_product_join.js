@@ -13,9 +13,6 @@ const Order_Product = db.define('order_product', {
     purchasePrice: function(value){
       return this.getDataValue('purchasePrice')/100
     }
-  }, 
-  hooks: {
-    
   }
 });
 

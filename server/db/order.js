@@ -11,41 +11,40 @@ const Order = db.define('order', {
   status: {
     type: Sequelize.ENUM,
     values: ['pending', 'complete']
-  }, 
-  totalQuantity: {
-    type: Sequelize.VIRTUAL, 
-    get: function(id){
-      Order_Product.findAll({
-        where: {
-          orderId: id
-        }
-      })
-        .then(function(orderLines){
-          return orderLines.reduce(function(accumulator, line){
-            return accumulator+line.quantity 
-          }, 0)
-        })
-    }
-
-  }, 
-  totalCost: {
-    type: Sequelize.VIRTUAL, 
-    get: function(id){
-      Order_Product.findAll({
-        where: {
-          orderId: id
-        }
-      })
-      .then(function(orderLines) {
-        return orderLines.reduce(function(accumulator, line) {
-          return Product.findOne({where: { id: line.productId }})
-          .then(product => {
-            return accumulator + (line.quantity * product.price)
-          })
-        }, 0)
-      })
-    }
   }
 })
+
+ 
+Order.prototype.totalQuantity = function(id) {
+    console.log("in totalQuantity")
+    return Order_Product.findAll({
+      where: {
+        orderId: id
+      }
+    })
+      .then(function(orderLines){
+        const orderTotal = orderLines.reduce(function(accumulator, line){
+          return accumulator + line.quantity 
+        }, 0)
+        return orderTotal
+      })
+      .catch(err => {
+        console.error( err)
+      })
+}
+
+Order.prototype.totalCost = function(id) {
+    return Order_Product.findAll({
+      where: {
+        orderId: id
+      }
+    })
+    .then(function(orderLines) {
+      console.log('orderLines', orderLines)
+      return orderLines.reduce(function(accumulator, line) {
+        return accumulator + (line.quantity * line.purchasePrice)
+      }, 0)
+    })
+}
 
 module.exports = Order;
