@@ -12,6 +12,7 @@ User.hasMany(Order)
 Order.belongsToMany(Product, { through: Order_Product})
 Product.belongsToMany(Order, { through: Order_Product})
 Review.belongsTo(User)
+Review.belongsTo(Product)
 User.hasMany(Review)
 
 module.exports = db;
