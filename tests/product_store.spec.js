@@ -10,7 +10,7 @@ const mockAxios = new MockAdapter(axios)
 const middlewares = [thunkMiddleware]
 const mockStore = configureMockStore(middlewares)
 
-describe.only('thunk creators', () => {
+describe('thunk creators', () => {
   let store
 
   const initialState = {products: []}
