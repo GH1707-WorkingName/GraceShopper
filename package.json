@@ -4,10 +4,9 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha ./tests/*.spec.js --compilers js:babel-register",
     "start": "node server",
     "start-dev": "webpack -w & nodemon ./server/index.js",
-    "test": "mocha ./tests/*.spec.js --compilers js:babel-register",
     "seed": "node seed.js"
   },
   "repository": {
@@ -21,6 +20,7 @@
   },
   "homepage": "https://github.com/GH1707-WorkingName/GraceShopper#readme",
   "dependencies": {
+    "axios": "^0.16.2",
     "body-parser": "^1.18.0",
     "connect-session-sequelize": "^4.1.0",
     "express": "^4.15.4",
