@@ -21,15 +21,15 @@ Order.prototype.totalQuantity = function(id) {
         orderId: id
       }
     })
-      .then(function(orderLines){
-        const orderTotal = orderLines.reduce(function(accumulator, line){
-          return accumulator + line.quantity 
-        }, 0)
-        return orderTotal
-      })
-      .catch(err => {
-        console.error( err)
-      })
+    .then(function(orderLines){
+      const orderTotal = orderLines.reduce(function(accumulator, line){
+        return accumulator + line.quantity 
+      }, 0)
+      return orderTotal
+    })
+    .catch(err => {
+      console.error( err)
+    })
 }
 
 Order.prototype.totalCost = function(id) {

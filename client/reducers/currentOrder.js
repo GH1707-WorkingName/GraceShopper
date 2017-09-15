@@ -46,4 +46,11 @@ export const setCurrentOrder = order => dispatch => {
     .then(order => dispatch(setOrder(order)))
     .catch(console.error)
 }
+
+export const addItem = item => dispatch => {
+  axios.update(`/api/orders/${currentOrder.id}`)
+    .then(res => res.data)
+    .then(order => dispatch(addNewItem(item)))
+    .catch(console.error);
+}
   

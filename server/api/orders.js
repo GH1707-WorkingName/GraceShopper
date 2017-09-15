@@ -4,17 +4,24 @@ const Order = require('../db').models.order
 
 //testRoute
 router.post('/', (req, res, next) => {
-  if (!req.session.orderId) {
-    Order.create({
-      status: 'pending'
-    })
-    .then(order => {
-      req.session.orderId = order.id; 
-      order.setProduct(req.body.product);
-      res.status(201).json(order);
-    })
-    .catch(next);
-  }
+  Order.create({
+    status: 'pending'
+  })
+  .then(order => {
+    req.session.orderId = order.id; 
+    res.status(201).json(order);
+  })
+  .catch(next);
+});
+
+router.update('/', (req, res, next) => {
+  Order.update({
+    setProduct:req.params.productId
+  },{
+    where: {
+      id: req.session.orderId
+    }
+  })
 })
 
 router.get('/:id/totalQuant', (req, res, next) => {
