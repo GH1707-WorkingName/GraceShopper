@@ -1,6 +1,7 @@
 const db = require('./server/db/index');
 const Product = require('./server/db/product');
 const User = require('./server/db/user');
+const Review = require('./server/db/review');
 
 const products = [
   { title: 'Do You Dare', description: 'Ever wonder what it\'s like to be a dare-devil? Experience it firsthand without the risk.', imageUrl: 'http://3.bp.blogspot.com/-MmBixjQONj0/UNhJ0hn9_kI/AAAAAAAAC9k/Mim2UkIVnTw/s1600/article-1201105-05C97DC1000005DC-225_634x421.jpg', quantity: 10, price: 100 },
@@ -12,22 +13,52 @@ const products = [
   { title: 'Cuckoo Cloud Land', description: 'You took too many drugs.', imageUrl: 'https://1.bp.blogspot.com/-pWhUJOR5ahk/WUfaUpBngXI/AAAAAAAAFzs/i1eVSNM-NQsB5lILfhDo7ovsUXzqKtj2gCLcBGAs/s1600/Copywriter.jpg', quantity: 10, price: 100 },
   { title: 'Mad Hatter\'s Tea Party', description: 'Have tea and crumpets with Johnny Depp!', imageUrl: 'https://i0.wp.com/writingstudio.co.za/wp-content/uploads/2015/10/alice-in-wonderland-throught-the-looking-glass-cast-and-story-details.jpg', quantity: 10, price: 100 },
   { title: 'Labyrinth Ball', description: 'Dance with the Goblin King, David Bowie, in a dreamy wonderland.', imageUrl: 'https://i.ytimg.com/vi/dFyufUCTCh8/maxresdefault.jpg', quantity: 10, price: 100 },
+<<<<<<< HEAD
   { title: 'The Chocolate Factory', description: 'Everything is made of chocoloate!  Make sure you don\'t turn into a blueberry!', imageUrl: 'http://wfiles.brothersoft.com/t/the-chocolate-factory_72421-1920x1200.jpg', quantity: 10, price: 100 },
+=======
+  { title: 'The Chocolate Factory', description: 'Everything is made of chocolate!  Make sure you don\'t turn into a blueberry!', imageUrl: 'http://wfiles.brothersoft.com/t/the-chocolate-factory_72421-1920x1200.jpg', quantity: 10, price: 100 },
+>>>>>>> f01b612277fd861339ac1bf8cd1f70ab5de95b14
   { title: 'Nightmare', description: 'Wake up in your worst nightmare!', imageUrl: 'https://images1.laweekly.com/imager/u/original/8035676/abt_pp.jpg', quantity: 10, price: 100 },
   { title: 'PuppyVille', description: 'Everyone is a puppy that takes care of themselves, but you get to play with them all day!', imageUrl: 'http://www.kingwestvets.com/wp-content/uploads/2013/01/puppies-in-a-bathtub.jpg', quantity: 10, price: 100 },
   { title: 'Virtual Reality Check', description: 'Get your priorities straight.  1. Have fun!', imageUrl: 'https://regmedia.co.uk/2017/04/24/shutterstock_virtual_reality.jpg?x=1200&y=794', quantity: 10, price: 100 },
   { title: 'Matrix', description: 'You are the chosen one.', imageUrl: 'https://www.technobuffalo.com/wp-content/uploads/2016/07/matrixreloaded-470x310@2x.png', quantity: 10, price: 100 }
 ]
 
+const users = [
+  {firstName: 'Guillermo', lastName: 'MacPherson', email: 'guilly@bananas.com', password: 'testtesttesttest', isAdmin: true},
+  {firstName: 'Marco', lastName: 'Polo', email: 'imaconqueror@savage.com', password: 'stillatest'},
+  {firstName: 'Julio', lastName: 'Iglesias', email: 'EnriquesDad@rickymartin.com', password: 'whatjusthappened'},
+  {firstName: 'Michelle', lastName: 'Scharfstein', email: 'michellelovessalad@gmail.com', password: 'goCavs'}
+]
+
+
+const reviews = [
+  {rating: '3', description: 'This was ok'}, 
+  {rating: '4', description: 'This was more than ok'}, 
+  {rating: '1', description: 'This was terrible'}, 
+  {rating: '4', description: 'This was pretty ok'}, 
+  {rating: '5', description: 'I LOVE IT'}
+]
+
 const seed = () => {
   return Promise.all(products.map(product => {
     return Product.create(product)
-  } ))
+  }))
+  .then(()=> {
+    return Promise.all(users.map(user => {
+      return User.create(user)
+    }))
+  })
+  .then(()=> {
+    return Promise.all(reviews.map(review => {
+      return Review.create(review)
+    }))
+  })
 }
 
 const main = () => {
  console.log('Syncing db...');
- db.sync({ force: false })
+ db.sync()
    .then(() => {
      console.log('Seeding database...');
      return seed();

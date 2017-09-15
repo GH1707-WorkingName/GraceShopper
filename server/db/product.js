@@ -1,10 +1,13 @@
 const Sequelize = require ('sequelize');
 const db = require('./_db');
+const Order = ('./order');
+const Order_Product = require('./order_product_join');
 
 const Product = db.define('product', {
   title: {
     type: Sequelize.STRING,
-    allowNull: false,
+    unique: true,
+    allowNull: false
   },
   description: {
     type: Sequelize.TEXT
@@ -12,15 +15,24 @@ const Product = db.define('product', {
   imageUrl: {
     type: Sequelize.STRING,
     allowNull: false,
-    defaultValue: 'http://lorempixel.com/400/200/'
+    defaultValue: 'http://lorempixel.com/400/200/',
+    validate: {
+      isUrl: true
+    }
   },
   quantity: {
     type: Sequelize.INTEGER,
-    allowNull:false
+    allowNull:false,
+    validate: {
+      min: 0
+    }
   },
   price: {
     type: Sequelize.INTEGER,
-    allowNull: false
+    allowNull: false,
+    validate: {
+      min: 0
+    }
   }
 }, {
   getterMethods: {
@@ -33,6 +45,27 @@ const Product = db.define('product', {
       this.setDataValue('price', value * 100)
     }
   }
+// }, {
+//   hooks: {
+//     afterUpdate: (product, options) => {
+//       if(product.changed('price')) {
+//         Order_Product.findAll({
+//           where: {productId: product.id},
+//           include: [{
+//             model: Order,
+//             where: {status: 'pending'}
+//           }]
+//         })
+//         .then(orders => {
+//           console.log('orders', orders)
+//         })
+//       }
+     
+//     }
+//   }
+// });
 });
 
 module.exports = Product;
+
+//purchase price in order_product will be null by default.  When an item is added to a cart and/or when a cart is accessed, the price will be queried from the Product table.  After checkout is completed and the order is set to completed status, then you will set purchaseprice.
