@@ -1,5 +1,6 @@
 const router = require('express').Router()
-const Order = require('../db').models.order
+const Order = require('../db').models.order;
+const Order_Product = require('../db').models.order_product;
 
 //testRoute
 router.get('/:id/totalQuant', (req, res, next) => {
@@ -21,7 +22,18 @@ router.get('/:id/totalCost', (req, res, next) => {
     .then(totalCost => {
       res.json(totalCost)
     })
-
 })
+
+router.delete('/:id/:itemId', (req, res, next)=> {
+  Order.findById(req.params.id)
+    .then(order => {
+      order.removeProduct(req.params.itemId)
+      res.sendStatus(200);
+    })
+    .catch(console.error);
+}) 
+
+
+
 
 module.exports = router;
