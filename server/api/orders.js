@@ -14,7 +14,7 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
-router.update('/', (req, res, next) => {
+router.post('/', (req, res, next) => {
   Order.update({
     setProduct:req.params.productId
   },{
