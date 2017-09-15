@@ -5,12 +5,9 @@ import {fetchAllProducts} from './reducers';
 import store from './store';
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
-<<<<<<< HEAD
-import Banner from './components/Banner'
-=======
 import Cart from './components/Cart'
+import SingleProduct from './components/SingleProduct'
 
->>>>>>> f01b612277fd861339ac1bf8cd1f70ab5de95b14
 // import navbar, footer, all Components
 
 export default class Index extends Component {
@@ -22,15 +19,10 @@ export default class Index extends Component {
     return (
       <div>
         <Navbar />
-<<<<<<< HEAD
-        <Banner />
           <Switch>
             <Route exact path="/" component={AllProducts} />
-=======
-          <Switch>
-            <Route exact path="/" component={AllProducts} />
+            <Route exact path='/products/:id' component={SingleProduct}/> 
             <Route exact path="/cart" component={Cart} />
->>>>>>> f01b612277fd861339ac1bf8cd1f70ab5de95b14
           </Switch>
         <Footer />
       </div>

@@ -4,11 +4,7 @@ import axios from 'axios';
 const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 
 // ACTION CREATORS
-<<<<<<< HEAD
-const getAllProducts = allProducts => {
-=======
 export const getAllProducts = allProducts => {
->>>>>>> f01b612277fd861339ac1bf8cd1f70ab5de95b14
   return {type: GET_ALL_PRODUCTS, allProducts};
 }
 
