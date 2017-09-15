@@ -4,6 +4,11 @@ import { Link } from 'react-router-dom';
 
 export const Cart = () => {
   // delete below const when  order from mapStateToProps is accessible
+
+  const imgStyle = {
+    width: "175px",
+  }
+
   const order = [
     {
       id: 1,
@@ -19,8 +24,7 @@ export const Cart = () => {
     <table className="table">
       <thead>
         <tr>
-          <th>Item</th>
-          <th> </th>
+          <th>Item</th>        
           <th>Quantity</th>
           <th>Price</th>
           <th>Total</th>
@@ -34,7 +38,7 @@ export const Cart = () => {
               <td>
                 <div>
                   <Link to={`/products/${item.id}`} />
-                  <img src={ item.imageUrl } />
+                  <img src={ item.imageUrl } style={imgStyle}/>
                   <span>{ item.name }</span>
                 </div>
               </td>
