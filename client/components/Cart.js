@@ -6,6 +6,10 @@ import { deleteItem } from '../reducers'
 export class Cart extends React.Component{
   constructor(props){
     super(props)
+    this.state = {
+      editMode: false
+    }
+    this.handleChangeQuant = this.handleChangeQuant.bind(this);
   }
   
   render(){
@@ -23,7 +27,12 @@ export class Cart extends React.Component{
         price: '2343.99', 
         imageUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
       }
-    ]
+    ];
+
+    const handleSubmitUpdate = (event) => {
+      this.setState({editMode:true});
+      return  (this.props.deleteItem(this.props.order.id, evt.target.value))
+    }
 
     return ( 
       <div className='container'>
@@ -51,13 +60,19 @@ export class Cart extends React.Component{
                     </div>
                   </td>
                   <td>
-                    <form>
+                    <form
+                      onSubmit={this.handleSubmitUpdate}
+                    >
                     <input 
                     type="number"
                     name="item quantity"
                     defaultValue={item.quantity}
+                    onChange={this.handleChangeQuant}
                     />
-                    <button>Update</button>
+                    {
+                      this.state.editMode ? 
+                      <button type="submit">Update</button> : null
+                    }
                     </form>
                   </td>
                   <td>{ item.price }</td>
@@ -84,6 +99,16 @@ export class Cart extends React.Component{
       </Link>
     </div>
     )
+  }
+
+  handleChangeQuant(){
+    return this.setState({
+      editMode: true
+    })
+  };
+
+  handleSubmitUpdate(event) {
+    this.setState({editMode:true}); 
   }
 }
 
