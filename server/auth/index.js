@@ -1,8 +1,6 @@
 const router = require('express').Router();
 const User = require('../db/user');
 
-
-
 router.post('/login', (req, res, next) =>{
   User.findOne({
     where: {
@@ -23,12 +21,25 @@ router.post('/login', (req, res, next) =>{
 });
 
 router.post('/signup', (req, res, next) => {
-  User.create(req.body)
-  .then( user => {
-    req.login(user, err => {
-      if (err) next(err);
-      else res.json(user);
-    });
+  User.findOrCreate({
+    where: {
+      email: req.body.email
+    },
+    defaults: {
+      password: req.body.password,
+      firstName: req.body.firstName,
+      lastName: req.body.lastName
+    }
+  })
+  .spread( (user, isCreated) => {
+    if (isCreated) {
+      req.login(user, err => {
+        if (err) next(err);
+        else res.json(user);
+      })
+    } else {
+      res.status(401).send('User already exists.')
+    }
   })
   .catch(next);
 });
@@ -38,7 +49,7 @@ router.post('/logout', (req, res, next) => {
   res.sendStatus(200);
 });
 
-router.get('/me', (req, res, next) =>{
+router.get('/me', (req, res, next) => {
   res.json(req.user);
 })
 
