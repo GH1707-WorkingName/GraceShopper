@@ -6,6 +6,7 @@ import store from './store';
 import Footer from './components/Footer'
 import Navbar from './components/Navbar'
 import Cart from './components/Cart'
+import Login from './components/Login'
 
 // import navbar, footer, all Components
 
@@ -21,6 +22,7 @@ export default class Index extends Component {
           <Switch>
             <Route exact path="/" component={AllProducts} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         <Footer />
       </div>

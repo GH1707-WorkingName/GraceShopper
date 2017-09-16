@@ -2,14 +2,12 @@ import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { login } from '../reducers'
 
-
 export class Login extends Component {
   constructor() {
     super()
     this.state = {
       emailInput: '',
-      passwordInput: '',
-      dirty: false
+      passwordInput: ''
     }
     this.handleChange = this.handleChange.bind(this)
   }
@@ -29,7 +27,7 @@ export class Login extends Component {
   }
 
   render() {
-    const { emailInput, passwordInput, dirty } = this.state
+    const { emailInput, passwordInput} = this.state
 
     return (
       <div>
