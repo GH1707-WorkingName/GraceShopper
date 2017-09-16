@@ -1,9 +1,7 @@
 const router = require('express').Router();
 const User = require('../db/user');
 
-
-
-router.post('/login', (req, res, next) =>{
+router.post('/login', (req, res, next) => {
   User.findOne({
     where: {
       email: req.body.email
