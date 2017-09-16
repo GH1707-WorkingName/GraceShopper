@@ -1,6 +1,7 @@
-if (process.env.NODE_ENV === 'development') {
+//if (process.env.NODE_ENV === 'development') {
   require('./secrets'); // this will mutate the process.env object with your secrets.
-}
+//}
+//console.log(process.env.NODE_ENV)
 const express = require('express');
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
@@ -28,7 +29,7 @@ app.use(session({
 }));
 app.use(require('./middleware/passport'))
 
-// app.use('/auth', require('./auth'));
+app.use('/auth', require('./auth'));
 app.use('/api', require('./api'));
 
 //if doesn't hit backend routes, send index.html

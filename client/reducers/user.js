@@ -26,6 +26,8 @@ export default (user = {}, action) => {
 }
 
 //THUNK
+
+
 export const signup = (credentials, history) => {
   return dispatch => {
     return axios.post('/auth/signup', credentials)
