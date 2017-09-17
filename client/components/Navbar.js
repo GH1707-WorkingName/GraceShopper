@@ -4,42 +4,42 @@ import { connect } from 'react-redux';
 
 export const Navbar = ({user}) => {
   return (
-    <nav>
-      <h1>REALITY BYTES 
-        <Link to="/cart">
-          <span className="glyphicon glyphicon-shopping-cart pull-right white"></span>
-        </Link>
-        <Link to="/profile">
-        <span className="glyphicon glyphicon-user pull-right white"></span>
-        </Link>
-        <Link to="/">
-          <span className="glyphicon glyphicon-home white"></span>
-        </Link>
-        {
-          user.id ? (
-          <div>
-            <Link to="/logout" className="pull-right">
-              <button type="button" className="btn btn-default btn-sm">
-                Logout
-              </button>
-            </Link>
+    <nav className="navbar navbar-inverse white">
+        <h3>REALITY BYTES</h3>
+        <div>
+          <Link to="/cart">
+            <span className="glyphicon glyphicon-shopping-cart white"></span>
+          </Link>
+          <Link to="/profile">
+            <span className="glyphicon glyphicon-user white"></span>
+          </Link>
+          <Link to="/">
+            <span className="glyphicon glyphicon-home white"></span>
+          </Link>
           </div>
-          ) : (
+          {
+            user.id ? (
             <div>
-            <Link to="/signup" className="pull-right">
-              <button type="button" className="btn btn-default btn-sm">
-                Sign Up
-              </button>
-            </Link>
-            <Link to="/login" className="pull-right">
-              <button type="button" className="btn btn-default btn-sm">
-                Login
-              </button>
-            </Link>
+              <Link to="/logout" className="pull-right">
+                <button type="button" className="btn btn-default btn-sm">
+                  Logout
+                </button>
+              </Link>
+            </div>) : (
+            <div>
+              <Link to="/signup" className="pull-right">
+                <button type="button" className="btn btn-default btn-sm">
+                  Sign Up
+                </button>
+              </Link>
+              <Link to="/login" className="pull-right">
+                <button type="button" className="btn btn-default btn-sm">
+                  Login
+                </button>
+              </Link>
             </div>
           )
         }
-      </h1>
     </nav>
   )
 }
