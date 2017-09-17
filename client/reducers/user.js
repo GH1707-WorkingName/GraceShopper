@@ -34,7 +34,7 @@ export const signup = (credentials, history) => {
       .then(res => res.data)
       .then(user => dispatch(setUser(user)))
       .then(() => {
-        dispatch(setError(true))
+        dispatch(setError(false))
         history.push('/')
       })
       .catch(() => dispatch(setError(true)))
@@ -51,7 +51,7 @@ export const login = (credentials, history) => {
     })
     .then(() => {
       console.log('LOGGED IN')
-      dispatch(setError(true))
+      dispatch(setError(false))
       history.push('/')
     })
     .catch(() => dispatch(setError(true)))
