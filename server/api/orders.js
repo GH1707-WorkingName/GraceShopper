@@ -31,6 +31,20 @@ router.delete('/:id/:itemId', (req, res, next)=> {
       res.sendStatus(200);
     })
     .catch(console.error);
+})
+
+router.put('/:id/:itemId', (req, res, next)=> {
+  Order_Product.update({
+    quantity:req.body.quantity
+  },{
+    where: {
+      productId: req.params.itemId
+    }
+  })
+    .spread((num, order) => {
+      if (num) return res.status(200).json(order);
+    })
+    .catch(console.error);
 }) 
 
 
