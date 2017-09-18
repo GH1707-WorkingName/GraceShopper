@@ -55,4 +55,7 @@ router.get('/me', (req, res, next) => {
 
 router.use('/google', require('./google'))
 
+// try to avoid verbs in routes! --KM
+// look at auther solution for an example --KM
+
 module.exports = router;

@@ -18,6 +18,8 @@ export default (selectedProduct = [], action) => {
   }
 }
 
+// selectedProduct should be an object --GS
+
 //THUNK
 export const fetchSingleProduct = (id) => {
   return dispatch => {

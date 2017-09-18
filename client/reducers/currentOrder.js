@@ -52,7 +52,10 @@ export const deleteItem = (orderId, itemId) => dispatch =>{
   .catch(console.error)
 }
 
+// make sure to update the actual store when you delete an order --KM
 // we can either (1) update the currentOrder store with a new item order object with a new quantity or (2) just update the quantity on the existing item see `UPDATE_ITEM` action, matches option (1)
+// get rid of comment above --KM
+
 export const updateItem = (orderId, itemId, quantity) =>dispatch => {
   return axios.put(`/api/orders/${orderId}/${itemId}`, quantity)
   .then(res =>  res.data)

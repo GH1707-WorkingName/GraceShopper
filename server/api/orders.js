@@ -24,6 +24,9 @@ router.get('/:id/totalCost', (req, res, next) => {
     })
 })
 
+// route URLs are not great, might be a good place for a query string! --KM
+// if these are just test routes, delete them from master --KM
+
 router.delete('/:id/:itemId', (req, res, next)=> {
   Order.findById(req.params.id)
     .then(order => {
@@ -46,7 +49,7 @@ router.put('/:id/:itemId', (req, res, next)=> {
       else res.sendStatus(400);
     })
     .catch(console.error);
-}) 
+})
 
 
 

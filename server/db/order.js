@@ -3,18 +3,21 @@ const db = require('./_db');
 const Order_Product = require('./order_product_join');
 const Product = require('./product');
 
+// get rid of variables you don't use --FF
+
 
 const Order = db.define('order', {
   purchaseDate: {
     type: Sequelize.DATEONLY
-  }, 
+  },
   status: {
     type: Sequelize.ENUM,
     values: ['pending', 'complete', 'inactive']
   }
 })
 
- 
+// shipping address would be good to have here --FF
+
 Order.prototype.totalQuantity = function(id) {
     return Order_Product.findAll({
       where: {
@@ -23,7 +26,7 @@ Order.prototype.totalQuantity = function(id) {
     })
       .then(function(orderLines){
         const orderTotal = orderLines.reduce(function(accumulator, line){
-          return accumulator + line.quantity 
+          return accumulator + line.quantity
         }, 0)
         return orderTotal
       })

@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import store, { updateAccountThunk, deleteUserThunk } from '../store';
 
+// try not to import things you don't actually use --FF
+
 class UserAccount extends React.Component {
   constructor(props) {
     super(props)

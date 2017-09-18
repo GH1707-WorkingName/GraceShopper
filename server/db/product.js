@@ -60,12 +60,16 @@ const Product = db.define('product', {
 //           console.log('orders', orders)
 //         })
 //       }
-     
+
 //     }
 //   }
 // });
 });
 
+// GET RID OF THIS --FF
+
 module.exports = Product;
 
 //purchase price in order_product will be null by default.  When an item is added to a cart and/or when a cart is accessed, the price will be queried from the Product table.  After checkout is completed and the order is set to completed status, then you will set purchaseprice.
+
+// ALSO THESE --FF

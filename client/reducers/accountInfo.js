@@ -22,6 +22,7 @@ export default (user = {}, action) => {
   switch (action.type) {
     case GET_USER_INFO:
       return action.userInfo
+      // userInfo isn't the best name --KM
     case UPDATE_USER_INFO:
       return Object.assign({}, user, action.updatedUser)
     case DELETE_USER:

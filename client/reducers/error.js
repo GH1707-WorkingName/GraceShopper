@@ -22,3 +22,5 @@ export default (error = {}, action) => {
 }
 
 //Thunk
+
+// look into react-toastr for error handling instead of using the store --KM

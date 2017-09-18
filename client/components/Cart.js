@@ -11,20 +11,20 @@ export class Cart extends React.Component{
     }
     this.handleChangeQuant = this.handleChangeQuant.bind(this);
   }
-  
+
   render(){
     const order = [
       {
         id: 1,
         name: `ProductName`,
         quantity: 2,
-        price: '2343.99', 
+        price: '2343.99',
         imageUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
       },  {
         id: 2,
         name: `ProductName`,
         quantity: 3,
-        price: '2343.99', 
+        price: '2343.99',
         imageUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
       }
     ];
@@ -34,7 +34,7 @@ export class Cart extends React.Component{
       return  (this.props.deleteItem(this.props.order.id, evt.target.value))
     }
 
-    return ( 
+    return (
       <div className='container'>
         <div><h1>Shopping Cart</h1></div>
         <table className='table'>
@@ -63,29 +63,29 @@ export class Cart extends React.Component{
                     <form
                       onSubmit={this.handleSubmitUpdate}
                     >
-                    <input 
+                    <input
                     type="number"
                     name="item quantity"
                     defaultValue={item.quantity}
                     onChange={this.handleChangeQuant}
                     />
                     {
-                      this.state.editMode ? 
+                      this.state.editMode ?
                       <button type="submit">Update</button> : null
                     }
                     </form>
                   </td>
                   <td>{ item.price }</td>
-                  <td> 
-                    { 
+                  <td>
+                    {
                       // CALCULATED TOTAL
                     }
                   </td>
-                  <td> 
+                  <td>
                     <button
                       onClick={(evt) => (this.props.deleteItem(this.props.order.id, evt.target.value))}
                       value={item.id}
-                      > X 
+                      > X
                       </button>
                   </td>
                 </tr>
@@ -108,7 +108,7 @@ export class Cart extends React.Component{
   };
 
   handleSubmitUpdate(event) {
-    this.setState({editMode:true}); 
+    this.setState({editMode:true});
   }
 }
 
