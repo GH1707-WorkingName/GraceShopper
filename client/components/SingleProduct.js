@@ -9,42 +9,33 @@ class SingleProduct extends Component {
     super(props)
   }
 
-  // componentDidMount(){
-  //   const productId = Number(this.props.match.params.id)
-  //   this.props.fetchSingleProduct(productId)
-  // }
-
-
   render(){
     const allProducts = this.props.allProducts
     const singleProduct = allProducts && allProducts.filter(product=> product.id === Number(this.props.match.params.id))
     
     return (
       <div>
-        <Banner />
-          <div className = "container">
-          
+        <div className = "container">
           { singleProduct.length && 
-            <div>
-            <div>
-            <h1> <span id = "productTitle">{singleProduct[0].title}</span></h1> 
-            <h4><span id = "productPrice">Price: ${singleProduct[0].price}</span></h4>
-            <h5><span id = "quantityRemaining">Quantity Remaining: {singleProduct[0].quantity}</span> </h5>
-            </div>
+          <div>
+              <div>
+                <h1> <span id = "productTitle">{singleProduct[0].title}</span></h1> 
+                <h4><span id = "productPrice">Price: ${singleProduct[0].price}</span></h4>
+                <h5><span id = "quantityRemaining">Quantity Remaining: {singleProduct[0].quantity}</span> </h5>
+              </div>
             <div>
               <img src = {singleProduct[0].imageUrl} width = {200} height = {200}/>
             </div>
             <div>
               <button 
-                value = "addToCart" 
                 className="btn btn-primary btn-lg"> 
                   Add to Cart <span></span>
                 <span value = "addToCartButton" className="glyphicon glyphicon-plus"></span>
               </button>
             </div>
-            </div>
-          }
           </div>
+          }
+        </div>
       </div> 
     )
   }
