@@ -13,4 +13,6 @@ Category.findProductsByCatName(arr) {
   P
 }
 
+// what is P???? --FF
+
 module.exports = Category;

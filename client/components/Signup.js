@@ -41,6 +41,8 @@ export class Signup extends Component {
     }
   }
 
+  // can use setState without switch case --> this.setState({[evt.target.name]: evt.target.value}) --KM
+
   render() {
     const { emailInput, passwordInput, firstNameInput, lastNameInput, dirty } = this.state
     let formWarning = ''

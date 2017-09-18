@@ -18,4 +18,5 @@ export default (input = '', action) => {
   }
 }
 
+// look into updating the local state instead of the store for this --FF
 
