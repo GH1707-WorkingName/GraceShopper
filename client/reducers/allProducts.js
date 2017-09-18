@@ -16,7 +16,7 @@ export default (products = [], action) => {
     default:
       return products
   }
-}
+} 
 
 //THUNK
 export const fetchAllProducts = () => {
