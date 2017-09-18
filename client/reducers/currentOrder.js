@@ -15,7 +15,7 @@ const addNewItem = item => {
   return {type: ADD_ITEM, item}
 }
 
-const deleteItem = itemId => {
+const deleteEntireItem = itemId => {
   return {type:DELETE_ITEM, itemId}
 }
 
@@ -25,7 +25,7 @@ const updateExistingItem = item => {
 
 
 // REDUCER
-export default (currentOrder = [], action) => {
+export default (currentOrder =[], action) => {
   switch(action.type) {
     case SET_ORDER: 
       return action.order; 
@@ -41,10 +41,23 @@ export default (currentOrder = [], action) => {
 
 //THUNK 
 export const setCurrentOrder = order => dispatch => {
-  axios.post(`/api/orders/${order.id}`)
+  return axios.post(`/api/orders/${order.id}`)
     .then(res => res.data)
     .then(order => dispatch(setOrder(order)))
     .catch(console.error)
+} 
+
+export const deleteItem = (orderId, itemId) => dispatch =>{
+  return axios.delete(`/api/orders/${orderId}/${itemId}`)
+  .catch(console.error)
+} 
+
+// we can either (1) update the currentOrder store with a new item order object with a new quantity or (2) just update the quantity on the existing item see `UPDATE_ITEM` action, matches option (1)
+export const updateItem = (orderId, itemId, quantity) =>dispatch => {
+  return axios.put(`/api/orders/${orderId}/${itemId}`, quantity)
+  .then(res =>  res.data)
+  .then(item => dispatch(updateExistingItem(item)))
+  .catch(console.error)
 }
 
 export const addItem = item => dispatch => {
