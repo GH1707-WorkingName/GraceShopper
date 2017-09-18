@@ -9,5 +9,12 @@ router.get('/', (req, res, next) => {
     .catch(next)
 })
 
+router.get('/:id', (req, res, next) => {
+  Product.findById(req.params.id)
+    .then(product =>{
+      res.status(200).send(product)
+    })
+    .catch(next)
+})
 
 module.exports = router;

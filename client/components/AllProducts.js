@@ -11,11 +11,14 @@ export const AllProducts = ({allProducts}) => {
         allProducts &&
           allProducts.map(product => {
             return (
+              <div className = "container" key={product.id}>
               <div key={product.id}>
                 <Link to={`/products/${product.id}`}>
                   <img src={product.imageUrl} />
                   <h2>{product.title}</h2>
+                  <h3>${product.price}</h3>
                 </Link>
+              </div>
               </div>
             )
           })
