@@ -1,5 +1,6 @@
 import axios from 'axios';
-import {setError} from './index'
+import {setError, removeOrder} from './index'
+import history from '../history'
 
 // ACTION TYPES
 const SET_USER = 'SET_USER'
@@ -28,7 +29,7 @@ export default (user = {}, action) => {
 //THUNK
 
 
-export const signup = (credentials, history) => {
+export const signup = (credentials) => {
   return dispatch => {
     return axios.post('/auth/signup', credentials)
       .then(res => res.data)
@@ -41,7 +42,7 @@ export const signup = (credentials, history) => {
     }
 }
 
-export const login = (credentials, history) => {
+export const login = (credentials) => {
   return dispatch => {
     return axios.post('/auth/login', credentials)
     .then(res => res.data)
@@ -56,10 +57,13 @@ export const login = (credentials, history) => {
   }
 }
 
-export const logout = (history) => {
+export const logout = () => {
   return dispatch => {
     return axios.post('/auth/logout')
-      .then(() => dispatch(removeUser()))
+      .then(() => {
+        dispatch(removeOrder())
+        dispatch(removeUser())
+      })
       .then(() => history.push('/'))
       .catch(console.error)
   }

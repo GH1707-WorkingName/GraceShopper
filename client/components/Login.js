@@ -59,11 +59,11 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch, ownProps) => {
+const mapDispatchToProps = dispatch => {
   return {
     handleSubmit: (evt, email, password) => {
       evt.preventDefault()
-      dispatch(login({email, password}, ownProps.history))
+      dispatch(login({email, password}))
     }
   }
 }

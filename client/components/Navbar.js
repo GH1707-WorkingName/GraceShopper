@@ -2,8 +2,10 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import Search from './Search'
 import { connect } from 'react-redux';
+import history from '../history';
+import { logout } from '../reducers';
 
-export const Navbar = ({user}) => {
+export const Navbar = ({user, handleLogout}) => {
   return (
     <nav className="navbar navbar-inverse white">
         <h3>REALITY BYTES</h3>
@@ -22,7 +24,7 @@ export const Navbar = ({user}) => {
             user.id ? (
             <div>
               <Link to="/logout" className="pull-right">
-                <button type="button" className="btn btn-default btn-sm">
+                <button type="button" className="btn btn-default btn-sm" onClick={handleLogout}>
                   Logout
                 </button>
               </Link>
@@ -49,6 +51,15 @@ export const Navbar = ({user}) => {
 export const mapStateToProps = state => {
   return {
     user: state.user
+  }
+}
+
+export const mapDispatchToProps = dispatch => {
+  return {
+    handleLogout: () => {
+      dispatch(logout())
+      history.push('/')
+    }
   }
 }
 
