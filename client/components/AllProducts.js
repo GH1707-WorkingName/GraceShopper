@@ -7,11 +7,12 @@ export const AllProducts = ({allProducts}) => {
   return (
     <div>
     <Banner />
+      <div className="row">
       {
         allProducts &&
           allProducts.map(product => {
             return (
-              <div key={product.id}>
+              <div key={product.id} className="col-sm-4">
                 <Link to={`/products/${product.id}`}>
                   <img src={product.imageUrl} />
                   <h2>{product.title}</h2>
@@ -20,6 +21,7 @@ export const AllProducts = ({allProducts}) => {
             )
           })
       }
+      </div>
     </div>
   )
 }
