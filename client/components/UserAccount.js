@@ -49,7 +49,7 @@ class UserAccount extends React.Component {
           <button type="submit" className="btn btn-default">Update Account</button>
         </div>
         <div className="form-group">
-          <button onClick = {this.props.handleDeleteUser} className="btn btn-default">Delete User</button>
+          <button onClick = {this.props.handleDeleteAccount} className="btn btn-default">Delete User</button>
         </div>
       </form>
   </div>
@@ -60,7 +60,7 @@ class UserAccount extends React.Component {
 
 export const mapStateToProps = state => {
   return {
-    user: state.accountInfo
+    user: state.account
   }
 }
 
@@ -69,7 +69,7 @@ export const mapDispatchToProps = (dispatch, ownProps) => {
     handleUpdateUser(updatedUser) {
       dispatch(updateAccountThunk(updatedUser))
     },
-    handleDeleteUser() {
+    handleDeleteAccount() {
       dispatch(deleteUserThunk(ownProps.history))
     }
   }

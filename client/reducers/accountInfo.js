@@ -13,7 +13,7 @@ export const updateUserInfo = updatedUser => {
   return {type: UPDATE_USER_INFO, updatedUser}
 }
 
-export const deleteUser = user => {
+export const deleteUser = () => {
   return {type: DELETE_USER, user}
 }
 

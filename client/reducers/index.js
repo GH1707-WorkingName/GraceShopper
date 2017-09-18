@@ -19,8 +19,5 @@ export * from './allProducts'
 export * from './currentOrder'
 export * from './user'
 export * from './error'
-<<<<<<< HEAD
 export * from './account'
-=======
 export * from './search'
->>>>>>> master
