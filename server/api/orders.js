@@ -43,6 +43,7 @@ router.put('/:id/:itemId', (req, res, next)=> {
   })
     .spread((num, order) => {
       if (num) return res.status(200).json(order);
+      else res.sendStatus(400);
     })
     .catch(console.error);
 }) 
