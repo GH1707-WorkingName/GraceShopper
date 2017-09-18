@@ -56,7 +56,7 @@ export const login = (credentials, history) => {
   }
 }
 
-export const logout = () => {
+export const logout = (history) => {
   return dispatch => {
     return axios.post('/auth/logout')
       .then(() => dispatch(removeUser()))
