@@ -1,7 +1,8 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
 import { signup } from '../reducers'
-
+import store from '../store'
+import {setError} from '../reducers'
 
 export class Signup extends Component {
   constructor() {
@@ -14,6 +15,10 @@ export class Signup extends Component {
       dirty: false
     }
     this.handleChange = this.handleChange.bind(this)
+  }
+
+  componentWillUnmount() {
+    store.dispatch(setError({}))
   }
 
   handleChange(evt) {
@@ -71,8 +76,8 @@ export class Signup extends Component {
             <button type="submit">Submit</button>
           </div>
             {
-              this.props.error &&
-                <div>ERROR: An account with this email already exists. Please login through the login portal.</div>
+              this.props.error.status &&
+                <div>ERROR: {this.props.error.message}</div>
             }
         </form>
       </div>
