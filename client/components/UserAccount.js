@@ -22,14 +22,7 @@ class UserAccount extends React.Component {
 
 
   render() {
-    // const { user } = this.props
-    // using fake data for viewing purposes
-    const user = {
-      firstName: "Nicole",
-      lastName: "Ivanov",
-      email: "bla@bla.com",
-      password: "helloWorld"
-    }
+    const { user } = this.props
 
     return (
     <div>
