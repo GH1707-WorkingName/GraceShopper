@@ -17,7 +17,7 @@ export class Signup extends Component {
     this.handleChange = this.handleChange.bind(this)
   }
 
-  componentWillUnMount() {
+  componentWillUnmount() {
     store.dispatch(setError({}))
   }
 
