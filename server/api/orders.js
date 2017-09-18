@@ -18,6 +18,8 @@ router.post('/', (req, res, next) => {
 router.post('/', (req, res, next) => {
   Order.update({
     setProduct:req.params.productId
+    //somewhere here, need to update Quantity on O_P
+    //dispatch the updateExistingItem thunk to update the quantity
   },{
     where: {
       id: req.session.orderId
