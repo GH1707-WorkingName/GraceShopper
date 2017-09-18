@@ -1,7 +1,9 @@
 import React, {Component} from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Banner from './Banner'
+import {GridList, GridTile} from 'material-ui/GridList';
+import Subheader from 'material-ui/Subheader';
 
 
 export class AllProducts extends Component {
@@ -9,22 +11,42 @@ export class AllProducts extends Component {
     const { allProducts, searchInput } = this.props
     const filteredProducts = searchInput.length ? allProducts.filter(product => product.title.toLowerCase().match(searchInput.toLowerCase())) : allProducts
 
+    const styles = {
+      root: {
+        display: 'flex',
+        flexWrap: 'wrap',
+        justifyContent: 'space-around',
+      },
+      gridList: {
+        width: 1000,
+        height: 950,
+        overflowY: 'auto',
+      },
+    };
+
     return (
       <div>
         <Banner />
-          {
-            filteredProducts &&
-            filteredProducts.map(product => {
-              return (
-                <div key={product.id}>
-                  <Link to={`/products/${product.id}`}>
+        <div style={styles.root}>
+          <GridList
+            cellHeight={180}
+            style={styles.gridList}
+          >
+            <Subheader>Experiences</Subheader>
+            {
+              filteredProducts &&
+              filteredProducts.map(product => (
+                <GridTile 
+                  key={product.id}
+                  title={product.title}
+                >
+                  <NavLink to={`/products/${product.id}`}>
                     <img src={product.imageUrl} />
-                    <h2>{product.title}</h2>
-                  </Link>
-                </div>
-              )
-            })
-          }
+                  </NavLink>
+                </GridTile>
+            ))}
+          </GridList>
+        </div>
       </div>
     )
   }
@@ -40,3 +62,5 @@ export const mapStateToProps = state => {
 
 const AllProductsContainer = connect(mapStateToProps)(AllProducts)
 export default AllProductsContainer
+
+
