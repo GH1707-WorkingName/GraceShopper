@@ -9,18 +9,17 @@ class SingleProduct extends Component {
   constructor(props){
     super(props)
 
-    // this.handleClick = this.handleClick.bind(this)
+    this.handleClick = this.handleClick.bind(this)
   }
 
-  // handleClick(dispatch){
-  //   //check if there is already a current order set on the store
-  //   if(!this.props.currentOrder){
-  //     dispatch(createNewOrder)
-  //   }
-
-    //else dispatch Create New Order
+  handleClick(dispatch){
+    //check if there is already a current order set on the store
+    if(!this.props.currentOrder){
+      this.props.dispatchCreateOrder()
+    }
+  }
     //set New Order as Current Order
-  // }
+ 
 
   render(){
     const allProducts = this.props.allProducts
@@ -40,9 +39,12 @@ class SingleProduct extends Component {
               <img src = {singleProduct[0].imageUrl} width = {200} height = {200}/>
             </div>
             <div>
+              {singleProduct[0].description}
+            </div>
+            <div>
               <button 
                 className="btn btn-primary btn-lg"
-                onClick = {this.props.handleClick}
+                onClick = {this.handleClick}
                 > 
                   Add to Cart <span></span>
                 <span value = "addToCartButton" className="glyphicon glyphicon-plus"></span>
@@ -59,16 +61,13 @@ class SingleProduct extends Component {
 const mapStateToProps = state => {
   return {
     allProducts: state.products
+
   }
 }
 const mapDispatchToProps = function(dispatch, ownProps){
   return {
-    handleClick(evt){
-      console.log("OWNPROPS RIGHT NOW", ownProps)
-      if (!ownProps.currentOrder){
+    dispatchCreateOrder(evt){
         dispatch(createNewOrder())
-      }
-      
     }
   }
 }

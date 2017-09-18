@@ -7,7 +7,7 @@ const DELETE_ITEM = 'DELETE_ITEM';
 const UPDATE_ITEM = 'UPDATE_ITEM';
 
 // ACTION CREATORS
-const setOrder = order => {
+export const setOrder = order => {
   return {type: SET_ORDER, order}
 }
 
