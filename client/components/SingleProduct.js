@@ -3,11 +3,24 @@ import { connect } from 'react-redux';
 import store from '../store'
 import Banner from './Banner'
 import {fetchSingleProduct} from '../reducers/singleProduct'
+import {createNewOrder} from '../reducers/allOrders'
 
 class SingleProduct extends Component {
   constructor(props){
     super(props)
+
+    // this.handleClick = this.handleClick.bind(this)
   }
+
+  // handleClick(dispatch){
+  //   //check if there is already a current order set on the store
+  //   if(!this.props.currentOrder){
+  //     dispatch(createNewOrder)
+  //   }
+
+    //else dispatch Create New Order
+    //set New Order as Current Order
+  // }
 
   render(){
     const allProducts = this.props.allProducts
@@ -28,7 +41,9 @@ class SingleProduct extends Component {
             </div>
             <div>
               <button 
-                className="btn btn-primary btn-lg"> 
+                className="btn btn-primary btn-lg"
+                onClick = {this.props.handleClick}
+                > 
                   Add to Cart <span></span>
                 <span value = "addToCartButton" className="glyphicon glyphicon-plus"></span>
               </button>
@@ -46,7 +61,18 @@ const mapStateToProps = state => {
     allProducts: state.products
   }
 }
+const mapDispatchToProps = function(dispatch, ownProps){
+  return {
+    handleClick(evt){
+      console.log("OWNPROPS RIGHT NOW", ownProps)
+      if (!ownProps.currentOrder){
+        dispatch(createNewOrder())
+      }
+      
+    }
+  }
+}
 
-const mapDispatchToProps = {fetchSingleProduct}
+
 const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
 export default SingleProductContainer

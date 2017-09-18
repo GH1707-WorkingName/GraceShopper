@@ -5,12 +5,13 @@ const Order_Product = require('../db').models.order_product;
 
 //testRoute
 router.post('/', (req, res, next) => {
-  Order.create({
+  return Order.create({
     status: 'pending'
   })
   .then(order => {
+    console.log("ORDER CREATED", order)
     req.session.orderId = order.id; 
-    res.status(201).json(order);
+    res.status(201).send(order);
   })
   .catch(next);
 });

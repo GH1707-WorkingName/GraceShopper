@@ -5,8 +5,8 @@ const GET_ALL_PRODUCTS = 'GET_ALL_PRODUCTS';
 
 // ACTION CREATORS
 export const getAllProducts = allProducts => {
-  return {type: GET_ALL_PRODUCTS, allProducts};
-}
+  return {type: GET_ALL_PRODUCTS, allProducts}
+};
 
 // REDUCER
 export default (products = [], action) => {
