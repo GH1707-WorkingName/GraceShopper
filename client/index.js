@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Cart from './components/Cart'
+import Checkout from './components/Checkout'
 
 
 // import navbar, footer, all Components
@@ -24,6 +25,7 @@ export default class Index extends Component {
             <Route exact path="/" component={AllProducts} />
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/checkout" component={Checkout} />
           </Switch>
         <Footer />
       </div>
