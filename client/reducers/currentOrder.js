@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// ACTION TYPES 
+// ACTION TYPES
 const SET_ORDER = 'SET_ORDER';
 const ADD_ITEM = 'ADD_ITEM';
 const DELETE_ITEM = 'DELETE_ITEM';
@@ -25,33 +25,33 @@ const updateExistingItem = item => {
 
 
 // REDUCER
-export default (currentOrder =[], action) => {
-  switch(action.type) {
-    case SET_ORDER: 
-      return action.order; 
-    case ADD_ITEM: 
+export default (currentOrder = [], action) => {
+  switch (action.type) {
+    case SET_ORDER:
+      return action.order;
+    case ADD_ITEM:
       return [action.item, ...currentOrder];
     case DELETE_ITEM:
       return currentOrder.filter(item => item.id !== action.itemId);
     case UPDATE_ITEM:
       return currentOrder.map(item => (item.id === action.item.id ? action.item : item));
-    default: return currentOrder; 
+    default: return currentOrder;
   }
 }
 
-//THUNK 
+//THUNK
 export const setCurrentOrder = order => dispatch => {
   return axios.post(`/api/orders/${order.id}`)
     .then(res => res.data)
     .then(order => dispatch(setOrder(order)))
     .catch(console.error)
-} 
+}
 
 export const deleteItem = (orderId, itemId) => dispatch =>{
   return axios.delete(`/api/orders/${orderId}/${itemId}`)
   .then(dispatch(deleteEntireItem(itemId)))
   .catch(console.error)
-} 
+}
 
 export const updateItem = (orderId, itemId, quantity) => dispatch => {
   return axios.put(`/api/orders/${orderId}/${itemId}`, quantity)
@@ -59,4 +59,3 @@ export const updateItem = (orderId, itemId, quantity) => dispatch => {
   .then(item => dispatch(updateExistingItem(item)))
   .catch(console.error)
 }
-  

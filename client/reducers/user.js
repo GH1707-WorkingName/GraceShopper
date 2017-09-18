@@ -31,7 +31,16 @@ export const signup = (credentials, history) => {
         dispatch(setError(true))
         history.push('/')
       })
-      .catch(() => dispatch(setError(true)))
+      .catch((err) => {
+        switch (err.response.status) {
+          case 401:
+            return dispatch(setError({status: 401, message: "User already exists. Please use login portal."}))
+          case 500:
+            return dispatch(setError({status: 500, message: "Please make sure all inputs are correct and try again."}))
+          default:
+            return dispatch(setError({status: 500, message: "Try again."}))
+        }
+      })
     }
 }
 
