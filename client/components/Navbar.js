@@ -1,5 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import Search from './Search'
 import { connect } from 'react-redux';
 
 export const Navbar = ({user}) => {
@@ -40,6 +41,7 @@ export const Navbar = ({user}) => {
             </div>
           )
         }
+      <Search />
     </nav>
   )
 }
@@ -51,5 +53,5 @@ export const mapStateToProps = state => {
 }
 
 const NavbarContainer = connect(mapStateToProps)(Navbar);
-export default NavbarContainer; 
+export default NavbarContainer;
 
