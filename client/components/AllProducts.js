@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Banner from './Banner'
-import Search from './Search'
+
 
 export class AllProducts extends Component {
   render() {
@@ -12,7 +12,6 @@ export class AllProducts extends Component {
     return (
       <div>
         <Banner />
-        <Search />
           {
             filteredProducts &&
             filteredProducts.map(product => {
