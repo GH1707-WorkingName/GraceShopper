@@ -25,16 +25,17 @@ const updateExistingItem = item => {
 
 
 // REDUCER
-export default (currentOrder =[], action) => {
+export default (currentOrder={}, action) => {
   switch(action.type) {
     case SET_ORDER: 
       return action.order; 
+    //add logic on singleProduct if item already exists dispatch updateItem, otherwise dispatch addItem action   
     case ADD_ITEM: 
-      return [action.item, ...currentOrder];
+      return currentOrder.items = [...items, action.item];
     case DELETE_ITEM:
-      return currentOrder.filter(item => item.id !== action.itemId);
+      return currentOrder.items.filter(item => item.id !== action.itemId);
     case UPDATE_ITEM:
-      return currentOrder.map(item => (item.id === action.item.id ? action.item : item));
+      return currentOrder.item.map(item => (item.id === action.item.id ? action.item : item));
     default: return currentOrder; 
   }
 }
