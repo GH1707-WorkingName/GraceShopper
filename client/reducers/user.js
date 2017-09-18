@@ -47,10 +47,8 @@ export const login = (credentials, history) => {
     .then(res => res.data)
     .then(user => {
       dispatch(setUser(user))
-      console.log(user)
     })
     .then(() => {
-      console.log('LOGGED IN')
       dispatch(setError(false))
       history.push('/')
     })
