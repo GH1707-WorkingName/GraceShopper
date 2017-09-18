@@ -9,14 +9,12 @@ router.post('/', (req, res, next) => {
       status: 'pending'
     })
     .then(order => {
-      req.session.orderId = order.id; 
+      req.session.orderId = order.id;
       order.setProduct(req.body.product);
       res.status(201).json(order);
     })
     .catch(next);
   }
 })
-
-
 
 module.exports = router;
