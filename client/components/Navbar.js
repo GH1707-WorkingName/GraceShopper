@@ -4,7 +4,7 @@ import { connect } from 'react-redux';
 
 export const Navbar = ({user}) => {
   return (
-    <nav className="navbar navbar-inverse white">
+    <nav className="navbar white">
         <h3>REALITY BYTES</h3>
         <div>
           <Link to="/cart">
