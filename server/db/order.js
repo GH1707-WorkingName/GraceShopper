@@ -1,6 +1,6 @@
 const Sequelize = require ('sequelize');
 const db = require('./_db');
-const Order_Product = require('./order_product_join');
+const Order_Product  = require('./order_product_join');
 const Product = require('./product');
 
 
@@ -10,7 +10,7 @@ const Order = db.define('order', {
   }, 
   status: {
     type: Sequelize.ENUM,
-    values: ['pending', 'complete']
+    values: ['pending', 'complete', 'inactive']
   }
 })
 
