@@ -25,7 +25,7 @@ export default (user = {}, action) => {
 export const signup = (credentials, history) => {
   return dispatch => {
     return axios.post('/auth/signup', credentials)
-      .then(res => console.log('RESULT:', res))
+      .then(res => res.data)
       .then(user => dispatch(setUser(user)))
       .then(() => {
         dispatch(setError(true))
