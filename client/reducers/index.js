@@ -3,18 +3,24 @@ import allProductsReducer from './allProducts';
 import currentOrder from './currentOrder';
 import user from './user';
 import error from './error';
-import account from './account';
+import searchInput from './search'
+import account from './account'
 
 export default combineReducers({
   products: allProductsReducer,
   currentOrder,
   user,
   error,
-  account
+  account,
+  searchInput
 })
 
 export * from './allProducts'
 export * from './currentOrder'
 export * from './user'
 export * from './error'
+<<<<<<< HEAD
 export * from './account'
+=======
+export * from './search'
+>>>>>>> master
