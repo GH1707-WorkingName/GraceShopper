@@ -53,21 +53,18 @@ export const deleteItem = (orderId, itemId) => dispatch =>{
   .catch(console.error)
 }
 
-// we can either (1) update the currentOrder store with a new item order object with a new quantity or (2) just update the quantity on the existing item see `UPDATE_ITEM` action, matches option (1)
+export const addItem = (product, orderId) => dispatch => {
+  axios.put(`/api/orders/${orderId}`, product)
+    .then(res => res.data)
+    .then(order => dispatch(addNewItem(product)))
+    .catch(console.error);
+}
+
 export const updateItem = (orderId, itemId, quantity) =>dispatch => {
   return axios.put(`/api/orders/${orderId}/${itemId}`, quantity)
   .then(res =>  res.data)
   .then(item => dispatch(updateExistingItem(item)))
   .catch(console.error)
 }
-<<<<<<< HEAD
 
-export const addItem = (item, orderId) => dispatch => {
-  axios.put(`/api/orders/${orderId}`)
-    .then(res => res.data)
-    .then(order => dispatch(addNewItem(item, orderId)))
-    .catch(console.error);
-}
   
-=======
->>>>>>> master
