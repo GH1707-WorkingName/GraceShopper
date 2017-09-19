@@ -42,7 +42,7 @@ export default (currentOrder={}, action) => {
 
 //THUNK
 export const setCurrentOrder = order => dispatch => {
-  return axios.post(`/api/orders/${order.id}`)
+  return axios.get(`/api/orders`, userId)
     .then(res => res.data)
     .then(order => dispatch(setOrder(order)))
     .catch(console.error)
