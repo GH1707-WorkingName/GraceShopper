@@ -28,27 +28,6 @@ router.post('/', (req, res, next) => {
   })
 })
 
-router.get('/:id/totalQuant', (req, res, next) => {
-  Order.findById(req.params.id)
-    .then(function(order){
-      return order.totalQuantity(req.params.id)
-    })
-    .then(totalQuant => {
-      res.json(totalQuant)
-    })
-
-})
-
-router.get('/:id/totalCost', (req, res, next) => {
-  Order.findById(req.params.id)
-    .then(function(order){
-      return order.totalCost(req.params.id)
-    })
-    .then(totalCost => {
-      res.json(totalCost)
-    })
-})
-
 router.delete('/:id/:itemId', (req, res, next)=> {
   Order.findById(req.params.id)
     .then(order => {
@@ -58,6 +37,9 @@ router.delete('/:id/:itemId', (req, res, next)=> {
     .catch(console.error);
 })
 
+// new router needed to purely add new row in product_order table
+
+// this also needs a new else if statement, to check if the item already exists in the currentOrder STore
 router.put('/:id/:itemId', (req, res, next)=> {
   Order_Product.update({
     quantity:req.body.quantity
