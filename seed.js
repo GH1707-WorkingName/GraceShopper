@@ -2,6 +2,7 @@ const db = require('./server/db/index');
 const Product = require('./server/db/product');
 const User = require('./server/db/user');
 const Review = require('./server/db/review');
+const Order = require('./server/db/order');
 
 const products = [
   { title: 'Do You Dare', description: 'Ever wonder what it\'s like to be a dare-devil? Experience it firsthand without the risk.', imageUrl: 'http://3.bp.blogspot.com/-MmBixjQONj0/UNhJ0hn9_kI/AAAAAAAAC9k/Mim2UkIVnTw/s1600/article-1201105-05C97DC1000005DC-225_634x421.jpg', quantity: 10, price: 100 },
@@ -36,6 +37,24 @@ const reviews = [
   {rating: '5', description: 'I LOVE IT'}
 ]
 
+const orders = [
+  {status:'pending'},
+  {status:'pending'},
+  {status:'pending'},
+  {status:'pending'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'complete'},
+  {status:'inactive'},
+  {status:'inactive'},
+]
+
 const seed = () => {
   return Promise.all(products.map(product => {
     return Product.create(product)
@@ -48,6 +67,14 @@ const seed = () => {
   .then(()=> {
     return Promise.all(reviews.map(review => {
       return Review.create(review)
+    }))
+  })
+  .then(()=> {
+    return Promise.all(orders.map(order => {
+      return Order.create(order)
+        .then(order => {
+          order.setUser(Math.floor(Math.random() * users.length) + 1)
+        })
     }))
   })
 }
