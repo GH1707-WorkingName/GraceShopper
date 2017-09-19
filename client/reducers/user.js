@@ -41,7 +41,7 @@ export default (user = {}, action) => {
 }
 
 //THUNK
-export const fetchUserInfo = () => {
+export const fetchUser = () => {
   return dispatch => {
     return axios.get('/api/account')
       .then(res => res.data)
