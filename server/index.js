@@ -1,7 +1,7 @@
-//if (process.env.NODE_ENV === 'development') {
+if (process.env.NODE_ENV !== 'production') {
   require('./secrets'); // this will mutate the process.env object with your secrets.
-//}
-//console.log(process.env.NODE_ENV)
+}
+console.log(process.env.NODE_ENV);
 const express = require('express');
 const volleyball = require('volleyball');
 const bodyParser = require('body-parser');
