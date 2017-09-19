@@ -35,7 +35,7 @@ export default (currentOrder={}, action) => {
     case DELETE_ITEM:
       return currentOrder.items.filter(item => item.id !== action.itemId);
     case UPDATE_ITEM:
-      return currentOrder.item.map(item => (item.id === action.item.id ? action.item : item));
+      return currentOrder.items.map(item => (item.id === action.item.id ? action.item : item));
     default: return currentOrder; 
   }
 }
@@ -61,10 +61,10 @@ export const updateItem = (orderId, itemId, quantity) =>dispatch => {
   .catch(console.error)
 }
 
-export const addItem = item => dispatch => {
-  axios.update(`/api/orders/${currentOrder.id}`)
+export const addItem = (item, orderId) => dispatch => {
+  axios.put(`/api/orders/${orderId}`)
     .then(res => res.data)
-    .then(order => dispatch(addNewItem(item)))
+    .then(order => dispatch(addNewItem(item, orderId)))
     .catch(console.error);
 }
   

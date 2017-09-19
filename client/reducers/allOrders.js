@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setOrder} from './currentOrder'
+import {setOrder, addItem } from './currentOrder'
 
 // ACTION TYPES
 const CREATE_ORDER = 'CREATE_ORDER'; 
@@ -20,13 +20,16 @@ export default (orders=[], action) => {
 }
 
 // THUNK 
-export const createNewOrder = () => {
+export const createNewOrder = (item) => {
   return dispatch => {
     return axios.post('/api/orders')
       .then(res=>res.data)
       .then(newOrder=> {
         dispatch(createOrder(newOrder));
         dispatch(setOrder(newOrder))
+      })
+      .then(newOrder=> {
+        dispatch(addItem(item, newOrder.id));
       })
       .catch(console.error);
   }

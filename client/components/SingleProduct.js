@@ -4,6 +4,7 @@ import store from '../store'
 import Banner from './Banner'
 import {fetchSingleProduct} from '../reducers/singleProduct'
 import {createNewOrder} from '../reducers/allOrders'
+import {addItem} from '../reducers/currentOrder'
 
 class SingleProduct extends Component {
   constructor(props){
@@ -12,23 +13,23 @@ class SingleProduct extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(dispatch){
-    //check if there is already a current order set on the store
+  handleClick(evt){
     if(!this.props.currentOrder){
-      this.props.dispatchCreateOrder()
+      this.props.dispatchCreateOrder(evt.target.value);
+    }
+    else {
+      this.props.dispatchAddItem(evt.target.value, this.props.currentOrder.id);
     }
   }
-    //set New Order as Current Order
  
 
   render(){
-    const allProducts = this.props.allProducts
-    const singleProduct = allProducts && allProducts.filter(product=> product.id === Number(this.props.match.params.id))
+    const singleProduct = this.props.singleProduct 
     
     return (
       <div>
         <div className = "container">
-          { singleProduct.length && 
+          { singleProduct && 
           <div>
               <div>
                 <h1> <span id = "productTitle">{singleProduct[0].title}</span></h1> 
@@ -43,6 +44,7 @@ class SingleProduct extends Component {
             </div>
             <div>
               <button 
+                value = {singleProduct[0]}
                 className="btn btn-primary btn-lg"
                 onClick = {this.handleClick}
                 > 
@@ -58,16 +60,20 @@ class SingleProduct extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    allProducts: state.products
-
+    singleProduct: state.products.filter((product=> product.id === Number(ownProps.match.params.id))),
+    currentOrder: state.currentOrder
   }
 }
+
 const mapDispatchToProps = function(dispatch, ownProps){
   return {
-    dispatchCreateOrder(evt){
-        dispatch(createNewOrder())
+    dispatchCreateOrder(item){
+        dispatch(createNewOrder(item))
+    },
+    dispatchAddItem(item, orderId){
+      dispatch(addItem(item, orderId))
     }
   }
 }
