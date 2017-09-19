@@ -3,6 +3,7 @@ const router = require('express').Router()
 const Order = require('../db').models.order;
 const Order_Product = require('../db').models.order_product;
 
+//This route is not currently used, but should be used when we fetch existing cart for an authenticated user
 router.get('/', (req, res, next) => {
   return Order.findOne({
     where: {
@@ -10,9 +11,9 @@ router.get('/', (req, res, next) => {
       status: 'pending'
     }
   })
-  .then(order => (
-    res.status(200).send(order)
-  ))
+  .then(order => {
+    if (order) res.status(200).send(order)
+})
   .catch(next);
 })
 
