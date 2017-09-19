@@ -13,17 +13,7 @@ export class Login extends Component {
   }
 
   handleChange(evt) {
-    //HANDLE VALIDATIONS?
-    switch (evt.target.name) {
-      case 'email':
-        this.setState({emailInput: evt.target.value, dirty: true})
-        break;
-      case 'password':
-        this.setState({passwordInput: evt.target.value, dirty: true})
-        break;
-      default:
-        break;
-    }
+    this.setState({[evt.target.name]: evt.target.name.value})
   }
 
   render() {
@@ -44,8 +34,8 @@ export class Login extends Component {
             <button type="submit">Submit</button>
           </div>
             {
-              this.props.error &&
-                <div>ERROR: Incorrect password or email.</div>
+              this.props.error.status &&
+                <div>ERROR: {this.props.error.message}</div>
             }
         </form>
       </div>
