@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-// ACTION TYPES 
+// ACTION TYPES
 const SET_ORDER = 'SET_ORDER';
 const ADD_ITEM = 'ADD_ITEM';
 const DELETE_ITEM = 'DELETE_ITEM';
@@ -40,18 +40,18 @@ export default (currentOrder={}, action) => {
   }
 }
 
-//THUNK 
+//THUNK
 export const setCurrentOrder = order => dispatch => {
   return axios.post(`/api/orders/${order.id}`)
     .then(res => res.data)
     .then(order => dispatch(setOrder(order)))
     .catch(console.error)
-} 
+}
 
 export const deleteItem = (orderId, itemId) => dispatch =>{
   return axios.delete(`/api/orders/${orderId}/${itemId}`)
   .catch(console.error)
-} 
+}
 
 // we can either (1) update the currentOrder store with a new item order object with a new quantity or (2) just update the quantity on the existing item see `UPDATE_ITEM` action, matches option (1)
 export const updateItem = (orderId, itemId, quantity) =>dispatch => {
@@ -60,6 +60,7 @@ export const updateItem = (orderId, itemId, quantity) =>dispatch => {
   .then(item => dispatch(updateExistingItem(item)))
   .catch(console.error)
 }
+<<<<<<< HEAD
 
 export const addItem = (item, orderId) => dispatch => {
   axios.put(`/api/orders/${orderId}`)
@@ -68,3 +69,5 @@ export const addItem = (item, orderId) => dispatch => {
     .catch(console.error);
 }
   
+=======
+>>>>>>> master

@@ -12,7 +12,7 @@ export const setError = (error) => {
 }
 
 //Reducer
-export default (error = false, action) => {
+export default (error = {}, action) => {
   switch (action.type) {
     case SET_ERROR:
       return action.error

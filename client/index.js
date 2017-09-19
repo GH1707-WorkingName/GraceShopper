@@ -23,7 +23,7 @@ export default class Index extends Component {
         <Navbar />
           <Switch>
             <Route exact path="/" component={AllProducts} />
-            <Route path='/products/:id' component={SingleProduct}/> 
+            <Route path='/products/:id' component={SingleProduct}/>
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/cart" component={Cart} />
           </Switch>
