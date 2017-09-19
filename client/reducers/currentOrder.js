@@ -45,8 +45,9 @@ export default (currentOrder={}, action) => {
 }
 
 //THUNK
+//This thunk is not currently in use, but should be used when a user logs in 
 export const setCurrentOrder = order => dispatch => {
-  return axios.post(`/api/orders/${order.id}`)
+  return axios.get(`/api/orders`, userId)
     .then(res => res.data)
     .then(order => dispatch(setOrder(order)))
     .catch(console.error)
@@ -54,6 +55,7 @@ export const setCurrentOrder = order => dispatch => {
 
 export const deleteItem = (orderId, itemId) => dispatch =>{
   return axios.delete(`/api/orders/${orderId}/${itemId}`)
+  .then(dispatch(deleteEntireItem(itemId)))
   .catch(console.error)
 }
 

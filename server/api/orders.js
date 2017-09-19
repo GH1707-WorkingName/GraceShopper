@@ -3,7 +3,20 @@ const router = require('express').Router()
 const Order = require('../db').models.order;
 const Order_Product = require('../db').models.order_product;
 
-//testRoute
+//This route is not currently used, but should be used when we fetch existing cart for an authenticated user
+router.get('/', (req, res, next) => {
+  return Order.findOne({
+    where: {
+      userId: req.body.userId, 
+      status: 'pending'
+    }
+  })
+  .then(order => {
+    if (order) res.status(200).send(order)
+})
+  .catch(next);
+})
+
 router.post('/', (req, res, next) => {
   return Order.create({
     status: 'pending'
@@ -15,7 +28,7 @@ router.post('/', (req, res, next) => {
   .catch(next);
 });
 
-router.post('/', (req, res, next) => {
+router.post('/:id', (req, res, next) => {
   Order.update({
     setProduct:req.params.productId
     //somewhere here, need to update Quantity on O_P
@@ -27,16 +40,6 @@ router.post('/', (req, res, next) => {
   })
 })
 
-router.delete('/:id/:itemId', (req, res, next)=> {
-  Order.findById(req.params.id)
-    .then(order => {
-      order.removeProduct(req.params.itemId)
-      res.sendStatus(200);
-    })
-    .catch(console.error);
-})
-
-// new router needed to purely add new row in product_order table
 router.put('/:id', (req, res, next) => {
   Order.findById(req.params.id)
     .then(order => {
@@ -46,10 +49,9 @@ router.put('/:id', (req, res, next) => {
     .catch(console.error);
 })
 
-// this also needs a new else if statement, to check if the item already exists in the currentOrder STore
 router.put('/:id/:itemId', (req, res, next)=> {
   Order_Product.update({
-    quantity:req.body.quantity
+    quantity: +req.body.quantity
   },{
     where: {
       productId: req.params.itemId
@@ -61,6 +63,17 @@ router.put('/:id/:itemId', (req, res, next)=> {
     })
     .catch(console.error);
 }) 
+
+router.delete('/:id/:itemId', (req, res, next)=> {
+  Order.findById(req.params.id)
+    .then(order => {
+      order.removeProduct(req.params.itemId)
+      res.sendStatus(200);
+    })
+    .catch(console.error);
+})
+
+
 
 
 
