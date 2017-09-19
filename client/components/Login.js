@@ -13,7 +13,16 @@ export class Login extends Component {
   }
 
   handleChange(evt) {
-    this.setState({[evt.target.name]: evt.target.name.value})
+    switch (evt.target.name) {
+      case 'email':
+        this.setState({emailInput: evt.target.value})
+        break;
+      case 'password':
+        this.setState({passwordInput: evt.target.value})
+        break;
+      default:
+        break;
+    }
   }
 
   render() {
