@@ -69,7 +69,7 @@ export const updateAccountThunk = newInfo => {
   }
 }
 
-export const deleteUserThunk = (history) => {
+export const deleteUserThunk = () => {
   return dispatch => {
     return axios.put('api/account/delete')
       .then(res => res.data)
