@@ -1,12 +1,12 @@
 import { combineReducers } from 'redux';
-import allProductsReducer from './allProducts';
+import products from './allProducts';
 import currentOrder from './currentOrder';
 import user from './user';
 import error from './error';
 import searchInput from './search'
 
 export default combineReducers({
-  products: allProductsReducer,
+  products,
   currentOrder,
   user,
   error,
