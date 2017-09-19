@@ -24,12 +24,13 @@ class SingleProduct extends Component {
  
 
   render(){
-    const singleProduct = this.props.singleProduct 
+    const allProducts = this.props.allProducts
+    const singleProduct = allProducts && allProducts.filter(product=> product.id === Number(this.props.match.params.id))
     
     return (
       <div>
         <div className = "container">
-          { singleProduct && 
+          { singleProduct.length && 
           <div>
               <div>
                 <h1> <span id = "productTitle">{singleProduct[0].title}</span></h1> 
@@ -61,8 +62,9 @@ class SingleProduct extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
+  console.log("IM STATE PRODUCTS", state.products)
   return {
-    singleProduct: state.products.filter((product=> product.id === Number(ownProps.match.params.id))),
+    allProducts: state.products,
     currentOrder: state.currentOrder
   }
 }

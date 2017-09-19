@@ -26,7 +26,7 @@ export const createNewOrder = (item) => {
       .then(res=>res.data)
       .then(newOrder=> {
         dispatch(createOrder(newOrder));
-        dispatch(setOrder(newOrder.id))
+        dispatch(setOrder(newOrder))
         return newOrder;
       })
       .then(newOrder=> {
