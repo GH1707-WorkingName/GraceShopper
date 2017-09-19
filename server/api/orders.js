@@ -38,6 +38,14 @@ router.delete('/:id/:itemId', (req, res, next)=> {
 })
 
 // new router needed to purely add new row in product_order table
+router.put('/:id', (req, res, next) => {
+  Order.findById(req.params.id)
+    .then(order => {
+      order.setProduct(req.body.product.id)
+      res.sendStatus(200);
+    })
+    .catch(console.error);
+})
 
 // this also needs a new else if statement, to check if the item already exists in the currentOrder STore
 router.put('/:id/:itemId', (req, res, next)=> {
