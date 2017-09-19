@@ -17,23 +17,7 @@ export class Signup extends Component {
   }
 
   handleChange(evt) {
-    //HANDLE VALIDATIONS?
-    switch (evt.target.name) {
-      case 'firstName':
-        this.setState({firstNameInput: evt.target.value, dirty: true})
-        break;
-      case 'lastName':
-        this.setState({lastNameInput: evt.target.value, dirty: true})
-        break;
-      case 'email':
-        this.setState({emailInput: evt.target.value, dirty: true})
-        break;
-      case 'password':
-        this.setState({passwordInput: evt.target.value, dirty: true})
-        break;
-      default:
-        break;
-    }
+    this.setState({[evt.target.name]: evt.target.name.value})
   }
 
   render() {
