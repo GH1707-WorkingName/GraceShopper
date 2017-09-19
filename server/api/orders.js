@@ -9,7 +9,6 @@ router.post('/', (req, res, next) => {
     status: 'pending'
   })
   .then(order => {
-    console.log("ORDER CREATED", order)
     req.session.orderId = order.id; 
     res.status(201).send(order);
   })
@@ -41,9 +40,9 @@ router.delete('/:id/:itemId', (req, res, next)=> {
 router.put('/:id', (req, res, next) => {
   Order.findById(req.params.id)
     .then(order => {
-      order.setProduct(req.body.product.id)
-      res.sendStatus(200);
+      return order.addProduct(req.body.product)
     })
+    .then(()=> res.sendStatus(200))
     .catch(console.error);
 })
 

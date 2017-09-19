@@ -28,10 +28,14 @@ const updateExistingItem = item => {
 export default (currentOrder={}, action) => {
   switch(action.type) {
     case SET_ORDER: 
-      return action.order; 
+      let newOrder = action.order;
+      newOrder.items = []
+      return newOrder; 
     //add logic on singleProduct if item already exists dispatch updateItem, otherwise dispatch addItem action   
     case ADD_ITEM: 
-      return currentOrder.items = [...items, action.item];
+      let items = [...currentOrder.items, action.item]
+      console.log("ACTION.ITEM!!!!!!", action.item)
+      return Object.assign({}, currentOrder, {items: items});
     case DELETE_ITEM:
       return currentOrder.items.filter(item => item.id !== action.itemId);
     case UPDATE_ITEM:
@@ -54,9 +58,11 @@ export const deleteItem = (orderId, itemId) => dispatch =>{
 }
 
 export const addItem = (product, orderId) => dispatch => {
-  axios.put(`/api/orders/${orderId}`, product)
+  return axios.put(`/api/orders/${orderId}`, product)
     .then(res => res.data)
-    .then(order => dispatch(addNewItem(product)))
+    .then(order => {
+      return dispatch(addNewItem(product))
+    })
     .catch(console.error);
 }
 

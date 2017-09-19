@@ -30,7 +30,7 @@ export const createNewOrder = (item) => {
         return newOrder;
       })
       .then(newOrder=> {
-        dispatch(addItem(item, newOrder.id));
+        return dispatch(addItem(item, newOrder.id));
       })
       .catch(console.error);
   }

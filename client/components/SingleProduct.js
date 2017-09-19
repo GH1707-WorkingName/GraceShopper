@@ -13,12 +13,12 @@ class SingleProduct extends Component {
     this.handleClick = this.handleClick.bind(this)
   }
 
-  handleClick(evt){
+  handleClick(product){
     if(!this.props.currentOrder.id){  
-      this.props.dispatchCreateOrder(evt.target.value);
+      this.props.dispatchCreateOrder(product);
     }
     else {
-      this.props.dispatchAddItem(evt.target.value, this.props.currentOrder.id);
+      this.props.dispatchAddItem(product, this.props.currentOrder.id);
     }
   }
  
@@ -26,7 +26,7 @@ class SingleProduct extends Component {
   render(){
     const allProducts = this.props.allProducts
     const singleProduct = allProducts && allProducts.filter(product=> product.id === Number(this.props.match.params.id))
-    
+    console.log("SINGLE PRODUC!", singleProduct)
     return (
       <div>
         <div className = "container">
@@ -47,7 +47,7 @@ class SingleProduct extends Component {
               <button 
                 value = {singleProduct[0]}
                 className="btn btn-primary btn-lg"
-                onClick = {this.handleClick}
+                onClick = {()=> this.handleClick(singleProduct[0])}
                 > 
                   Add to Cart <span></span>
                 <span value = "addToCartButton" className="glyphicon glyphicon-plus"></span>
