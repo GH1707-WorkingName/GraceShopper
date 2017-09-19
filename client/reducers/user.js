@@ -1,5 +1,5 @@
 import axios from 'axios';
-import {setError} from './index'
+import {setError, removeOrder} from './index'
 
 // ACTION TYPES
 const GET_USER = 'GET_USER';
@@ -17,7 +17,7 @@ export const updateUserInfo = updatedUser => {
 }
 
 export const deleteUser = () => {
-  return {type: DELETE_USER, user}
+  return {type: DELETE_USER}
 }
 
 export const setUser = user => {
@@ -62,11 +62,11 @@ export const updateAccountThunk = newInfo => {
   }
 }
 
-export const deleteUserThunk = (history) => {
+export const deleteUserThunk = () => {
   return dispatch => {
     return axios.put('api/account/delete')
       .then(res => res.data)
-      .then(user => {
+      .then(() => {
         dispatch(deleteUser())
         history.push('/')
       })
@@ -83,7 +83,7 @@ export const signup = (credentials, history) => {
         dispatch(setError({}))
         history.push('/')
       })
-      .catch((err) => {
+      .catch(err => {
         switch (err.response.status) {
           case 401:
             return dispatch(setError({status: 401, message: "User already exists. Please use login portal."}))
@@ -94,4 +94,40 @@ export const signup = (credentials, history) => {
         }
       })
     }
+}
+
+export const login = (credentials, history) => {
+  return dispatch => {
+    return axios.post('/auth/login', credentials)
+    .then(res => res.data)
+    .then(user => {
+      dispatch(setUser(user))
+    })
+    .then(() => {
+      history.push('/')
+      dispatch(setError(false))
+    })
+    .catch(err => {
+      switch (err.response.status) {
+        case 401:
+          return dispatch(setError({status: 404, message: 'User not found.'}))
+        case 500:
+          return dispatch(setError({status: 400, message: 'Incorrect password'}))
+        default:
+          return dispatch(setError({status: 500, message: 'Try again.'}))
+      }
+    })
+  }
+}
+
+export const logout = (history) => {
+  return dispatch => {
+    return axios.post('/auth/logout')
+      .then(() => {
+        dispatch(removeOrder())
+        dispatch(deleteUser())
+      })
+      .then(() => history.push('/'))
+      .catch(console.error)
+  }
 }
