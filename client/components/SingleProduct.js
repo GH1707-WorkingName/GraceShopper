@@ -14,7 +14,7 @@ class SingleProduct extends Component {
   }
 
   handleClick(evt){
-    if(!this.props.currentOrder){
+    if(!this.props.currentOrder.id){  
       this.props.dispatchCreateOrder(evt.target.value);
     }
     else {
