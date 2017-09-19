@@ -26,7 +26,6 @@ class SingleProduct extends Component {
   render(){
     const allProducts = this.props.allProducts
     const singleProduct = allProducts && allProducts.filter(product=> product.id === Number(this.props.match.params.id))
-    console.log("SINGLE PRODUC!", singleProduct)
     return (
       <div>
         <div className = "container">
@@ -62,7 +61,6 @@ class SingleProduct extends Component {
 }
 
 const mapStateToProps = (state, ownProps) => {
-  console.log("IM STATE PRODUCTS", state.products)
   return {
     allProducts: state.products,
     currentOrder: state.currentOrder
