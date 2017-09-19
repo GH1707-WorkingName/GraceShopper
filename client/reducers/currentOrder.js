@@ -67,6 +67,8 @@ export const addItem = (product, orderId) => dispatch => {
     .catch(console.error);
 }
 
+
+
 export const updateItem = (orderId, itemId, quantity) =>dispatch => {
   return axios.put(`/api/orders/${orderId}/${itemId}`, quantity)
   .then(res =>  res.data)
