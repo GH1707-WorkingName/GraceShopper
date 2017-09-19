@@ -1,11 +1,12 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { Link, withRouter } from 'react-router-dom';
 import Search from './Search'
 import { connect } from 'react-redux';
-import history from '../history';
 import { logout } from '../reducers';
 
-export const Navbar = ({user, handleLogout}) => {
+export const Navbar = (props) => {
+  const {user, handleLogout} = props
+
   return (
     <nav className="navbar navbar-inverse white">
         <h3>REALITY BYTES</h3>
@@ -23,7 +24,7 @@ export const Navbar = ({user, handleLogout}) => {
           {
             user.id ? (
             <div>
-              <Link to="/logout" className="pull-right">
+              <Link to="/" className="pull-right">
                 <button type="button" className="btn btn-default btn-sm" onClick={handleLogout}>
                   Logout
                 </button>
@@ -54,15 +55,14 @@ export const mapStateToProps = state => {
   }
 }
 
-export const mapDispatchToProps = dispatch => {
+export const mapDispatchToProps = (dispatch, ownProps) => {
   return {
     handleLogout: () => {
-      dispatch(logout())
-      history.push('/')
+      dispatch(logout(ownProps.history))
     }
   }
 }
 
-const NavbarContainer = connect(mapStateToProps)(Navbar);
+const NavbarContainer = withRouter(connect(mapStateToProps)(Navbar));
 export default NavbarContainer;
 
