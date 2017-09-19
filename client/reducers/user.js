@@ -19,7 +19,7 @@ export const updateUserInfo = updatedUser => {
 }
 
 export const deleteUser = () => {
-  return {type: DELETE_USER, user}
+  return {type: DELETE_USER}
 }
 
 export const setUser = user => {
@@ -73,7 +73,7 @@ export const deleteUserThunk = () => {
   return dispatch => {
     return axios.put('api/account/delete')
       .then(res => res.data)
-      .then(user => {
+      .then(() => {
         dispatch(deleteUser())
         history.push('/')
       })
