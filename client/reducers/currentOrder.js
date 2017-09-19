@@ -60,7 +60,6 @@ export const updateItem = (orderId, itemId, quantity) =>dispatch => {
   .then(item => dispatch(updateExistingItem(item)))
   .catch(console.error)
 }
-<<<<<<< HEAD
 
 export const addItem = (item, orderId) => dispatch => {
   axios.put(`/api/orders/${orderId}`)
@@ -69,5 +68,3 @@ export const addItem = (item, orderId) => dispatch => {
     .catch(console.error);
 }
   
-=======
->>>>>>> master
