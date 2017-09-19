@@ -80,7 +80,7 @@ export const signup = (credentials, history) => {
       .then(res => res.data)
       .then(user => dispatch(setUser(user)))
       .then(() => {
-        dispatch(setError(true))
+        dispatch(setError({}))
         history.push('/')
       })
       .catch((err) => {
