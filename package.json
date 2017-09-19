@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
+  "engines": {
+    "node": "8.4.0"
+  },
   "scripts": {
     "test": "mocha ./tests/*.spec.js --compilers js:babel-register",
     "start": "node server",
