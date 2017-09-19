@@ -51,6 +51,7 @@ export const setCurrentOrder = order => dispatch => {
 
 export const deleteItem = (orderId, itemId) => dispatch =>{
   return axios.delete(`/api/orders/${orderId}/${itemId}`)
+  .then(dispatch(deleteEntireItem(itemId)))
   .catch(console.error)
 }
 

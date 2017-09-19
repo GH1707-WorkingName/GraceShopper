@@ -51,7 +51,7 @@ router.put('/:id', (req, res, next) => {
 
 router.put('/:id/:itemId', (req, res, next)=> {
   Order_Product.update({
-    quantity:req.body.quantity
+    quantity: +req.body.quantity
   },{
     where: {
       productId: req.params.itemId
@@ -72,6 +72,7 @@ router.delete('/:id/:itemId', (req, res, next)=> {
     })
     .catch(console.error);
 })
+
 
 
 
