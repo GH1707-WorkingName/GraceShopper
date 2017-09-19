@@ -5,17 +5,15 @@ import { Provider } from 'react-redux';
 import store from './client/store.js';
 import Index from './client/';
 import './client/index.scss';
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
-import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme';
-import getMuiTheme from 'material-ui/styles/getMuiTheme';
+import { MuiThemeProvider, createMuiTheme } from 'material-ui/styles';
 
 
-
+const theme = createMuiTheme();
 
 const App = () => (
-  <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+  <MuiThemeProvider theme={theme}>
     <Index />
-  </MuiThemeProvider>
+</MuiThemeProvider>
 )
 
 ReactDOM.render(

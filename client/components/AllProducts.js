@@ -2,51 +2,49 @@ import React, {Component} from 'react';
 import { NavLink } from 'react-router-dom';
 import { connect } from 'react-redux';
 import Banner from './Banner'
-import {GridList, GridTile} from 'material-ui/GridList';
-import Subheader from 'material-ui/Subheader';
+import Grid from 'material-ui/Grid';
 
 
 export class AllProducts extends Component {
+  state = {
+    spacing: '16'
+  }
   render() {
     const { allProducts, searchInput } = this.props
     const filteredProducts = searchInput.length ? allProducts.filter(product => product.title.toLowerCase().match(searchInput.toLowerCase())) : allProducts
-
+    const { spacing } = this.state;
     const styles = {
       root: {
-        display: 'flex',
-        flexWrap: 'wrap',
-        justifyContent: 'space-around',
+        flexGrow:1,
       },
-      gridList: {
-        width: 1000,
-        height: 950,
-        overflowY: 'auto',
+      image: {
+        height: "450px"
       },
+      control: {
+        padding: theme.spacing.unit *2
+      }
     };
-
+    
     return (
       <div>
         <Banner />
-        <div style={styles.root}>
-          <GridList
-            cellHeight={180}
-            style={styles.gridList}
-          >
-            <Subheader>Experiences</Subheader>
+        <Grid container className={styles.root}>
+          <Grid item lg={12}>
+            <Grid container className={classes.demo} justify="center" spacing={8}>
             {
               filteredProducts &&
               filteredProducts.map(product => (
-                <GridTile 
+                <Grid className={styles.demo} 
                   key={product.id}
-                  title={product.title}
                 >
                   <NavLink to={`/products/${product.id}`}>
-                    <img src={product.imageUrl} />
+                    <img src={product.imageUrl} className={styles.image} />
                   </NavLink>
-                </GridTile>
+                </Grid>
             ))}
-          </GridList>
-        </div>
+          </Grid>
+        </Grid>
+        </Grid>
       </div>
     )
   }
