@@ -1,8 +1,7 @@
 import React, {Component} from 'react';
 import { connect } from 'react-redux';
-import { signup } from '../reducers'
+import { signup, setError } from '../reducers'
 import store from '../store'
-import {setError} from '../reducers'
 
 export class Signup extends Component {
   constructor() {
@@ -23,6 +22,7 @@ export class Signup extends Component {
 
   handleChange(evt) {
     //HANDLE VALIDATIONS?
+
     switch (evt.target.name) {
       case 'firstName':
         this.setState({firstNameInput: evt.target.value, dirty: true})
