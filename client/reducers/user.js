@@ -90,7 +90,7 @@ export const signup = (credentials) => {
         dispatch(setError({}))
         history.push('/')
       })
-      .catch((err) => {
+      .catch(err => {
         switch (err.response.status) {
           case 401:
             return dispatch(setError({status: 401, message: "User already exists. Please use login portal."}))
@@ -114,7 +114,16 @@ export const login = (credentials) => {
       dispatch(setError(false))
       history.push('/')
     })
-    .catch(() => dispatch(setError(true)))
+    .catch(err => {
+      switch (err.response.status) {
+        case 401:
+          return dispatch(setError({status: 404, message: 'User not found.'}))
+        case 500:
+          return dispatch(setError({status: 400, message: 'Incorrect password'}))
+        default:
+          return dispatch(setError({status: 500, message: "Try again."}))
+      }
+    })
   }
 }
 
