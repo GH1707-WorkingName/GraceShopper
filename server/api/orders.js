@@ -2,26 +2,19 @@ const router = require('express').Router()
 const Order = require('../db').models.order;
 const Order_Product = require('../db').models.order_product;
 
-//testRoute
-router.get('/:id/totalQuant', (req, res, next) => {
-  Order.findById(req.params.id)
-    .then(function(order){
-      return order.totalQuantity(req.params.id)
-    })
-    .then(totalQuant => {
-      res.json(totalQuant)
-    })
 
-})
-
-router.get('/:id/totalCost', (req, res, next) => {
-  Order.findById(req.params.id)
-    .then(function(order){
-      return order.totalCost(req.params.id)
+router.post('/', (req, res, next) => {
+  if (!req.session.orderId) {
+    Order.create({
+      status: 'pending'
     })
-    .then(totalCost => {
-      res.json(totalCost)
+    .then(order => {
+      req.session.orderId = order.id; 
+      order.setProduct(req.body.product);
+      res.status(201).json(order);
     })
+    .catch(next);
+  }
 })
 
 router.delete('/:id/:itemId', (req, res, next)=> {
@@ -35,7 +28,7 @@ router.delete('/:id/:itemId', (req, res, next)=> {
 
 router.put('/:id/:itemId', (req, res, next)=> {
   Order_Product.update({
-    quantity:req.body.quantity
+    quantity: +req.body.quantity
   },{
     where: {
       productId: req.params.itemId
@@ -47,6 +40,7 @@ router.put('/:id/:itemId', (req, res, next)=> {
     })
     .catch(console.error);
 }) 
+
 
 
 
