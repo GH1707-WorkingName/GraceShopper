@@ -32,17 +32,26 @@ Order.prototype.totalQuantity = function(id) {
     })
 }
 
-Order.prototype.totalCost = function(id) {
-    return Order_Product.findAll({
+Order.prototype.totalCost = async function(id) {
+  try {
+    const orderLines = await Order_Product.findAll({
       where: {
         orderId: id
       }
     })
-    .then(function(orderLines) {
-      return orderLines.reduce(function(accumulator, line) {
-        return accumulator + (line.quantity * line.purchasePrice)
-      }, 0)
+    const productPrices = await Promise.all(orderLines.map(async line => {
+      const product = await Product.findById(line.productId)
+      return (product.price * line.quantity)/100
+    }))
+    const totalPrice = productPrices.reduce((accumulator, price) => {
+      return accumulator + price
     })
+    return totalPrice
+  } catch(e) {
+    console.error(e)
+  }
 }
+
+
 
 module.exports = Order;
