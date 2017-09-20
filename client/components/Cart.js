@@ -13,22 +13,9 @@ export class Cart extends React.Component{
   }
   
   render(){
-    const order = [
-      {
-        id: 1,
-        name: `ProductName`,
-        quantity: 2,
-        price: '2343.99', 
-        imageUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
-      },  {
-        id: 2,
-        name: `ProductName`,
-        quantity: 3,
-        price: '2343.99', 
-        imageUrl: `http://www.sanmateoinsider.org/wp-content/uploads/2016/10/Haunted-House.jpg`,
-      }
-    ];
 
+
+    const order = this.props.order.items
     const handleSubmitUpdate = (event) => {
       this.setState({editMode:true});
       return  (this.props.deleteItem(this.props.order.id, evt.target.value))
@@ -41,6 +28,7 @@ export class Cart extends React.Component{
           <thead>
             <tr>
               <th>Item</th>
+              <th>Name</th>
               <th>Quantity</th>
               <th>Price</th>
               <th>Total</th>
@@ -56,7 +44,11 @@ export class Cart extends React.Component{
                       <NavLink to={`/products/${item.id}`} >
                       <img src={ item.imageUrl } />
                       </NavLink>
-                      <span>{ item.name }</span>
+                    </div>
+                  </td>
+                  <td>
+                    <div>
+                      <span>{ item.title}</span>
                     </div>
                   </td>
                   <td>
