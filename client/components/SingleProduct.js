@@ -3,16 +3,29 @@ import { connect } from 'react-redux';
 import store from '../store'
 import Banner from './Banner'
 import {fetchSingleProduct} from '../reducers/singleProduct'
+import {createNewOrder} from '../reducers/allOrders'
+import {addItem} from '../reducers/currentOrder'
 
 class SingleProduct extends Component {
   constructor(props){
     super(props)
+
+    this.handleClick = this.handleClick.bind(this)
   }
+
+  handleClick(product){
+    if(!this.props.currentOrder.id){  
+      this.props.dispatchCreateOrder(product);
+    }
+    else {
+      this.props.dispatchAddItem(product, this.props.currentOrder.id);
+    }
+  }
+ 
 
   render(){
     const allProducts = this.props.allProducts
     const singleProduct = allProducts && allProducts.filter(product=> product.id === Number(this.props.match.params.id))
-    
     return (
       <div>
         <div className = "container">
@@ -27,8 +40,14 @@ class SingleProduct extends Component {
               <img src = {singleProduct[0].imageUrl} width = {200} height = {200}/>
             </div>
             <div>
+              {singleProduct[0].description}
+            </div>
+            <div>
               <button 
-                className="btn btn-primary btn-lg"> 
+                value = {singleProduct[0]}
+                className="btn btn-primary btn-lg"
+                onClick = {()=> this.handleClick(singleProduct[0])}
+                > 
                   Add to Cart <span></span>
                 <span value = "addToCartButton" className="glyphicon glyphicon-plus"></span>
               </button>
@@ -41,12 +60,24 @@ class SingleProduct extends Component {
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state, ownProps) => {
   return {
-    allProducts: state.products
+    allProducts: state.products,
+    currentOrder: state.currentOrder
   }
 }
 
-const mapDispatchToProps = {fetchSingleProduct}
+const mapDispatchToProps = function(dispatch, ownProps){
+  return {
+    dispatchCreateOrder(item){
+        dispatch(createNewOrder(item))
+    },
+    dispatchAddItem(item, orderId){
+      dispatch(addItem(item, orderId))
+    }
+  }
+}
+
+
 const SingleProductContainer = connect(mapStateToProps, mapDispatchToProps)(SingleProduct)
 export default SingleProductContainer
