@@ -60,7 +60,7 @@ class UserAccount extends React.Component {
 
 export const mapStateToProps = state => {
   return {
-    user: state.account
+    user: state.user
   }
 }
 

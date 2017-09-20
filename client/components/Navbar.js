@@ -14,9 +14,12 @@ export const Navbar = (props) => {
           <Link to="/cart">
             <span className="glyphicon glyphicon-shopping-cart white"></span>
           </Link>
-          <Link to="/profile">
-            <span className="glyphicon glyphicon-user white"></span>
-          </Link>
+          {
+            user.email &&
+            <Link to="/profile">
+              <span className="glyphicon glyphicon-user white"></span>
+            </Link>
+          }
           <Link to="/">
             <span className="glyphicon glyphicon-home white"></span>
           </Link>
