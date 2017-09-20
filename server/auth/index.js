@@ -1,15 +1,15 @@
 const router = require('express').Router();
 const User = require('../db/user');
 
-router.post('/login', (req, res, next) =>{
+router.post('/login', (req, res, next) => {
   User.findOne({
     where: {
       email: req.body.email
     }
   })
   .then(user => {
-    if (!user) res.status(401).send('User not found');
-    else if (!user.correctPassword(req.body.password)) res.status(401).send('Incorrect password');
+    if (!user) res.status(404).send('User not found');
+    else if (!user.correctPassword(req.body.password)) res.status(400).send('Incorrect password');
     else {
       req.login(user, err => {
         if (err) next(err);
@@ -46,6 +46,7 @@ router.post('/signup', (req, res, next) => {
 
 router.post('/logout', (req, res, next) => {
   req.logout();
+  req.session.destroy();
   res.sendStatus(200);
 });
 
