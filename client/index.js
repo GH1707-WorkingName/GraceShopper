@@ -9,6 +9,7 @@ import Signup from './components/Signup';
 import Cart from './components/Cart'
 import Login from './components/Login'
 import SingleProduct from './components/SingleProduct'
+import UserAccount from './components/UserAccount'
 
 
 // import navbar, footer, all Components
@@ -28,6 +29,7 @@ export default class Index extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/login" component={Login} />
+            <Route exact path='/profile' component={UserAccount} />
           </Switch>
         <Footer />
       </div>
