@@ -29,7 +29,7 @@ export default class Index extends Component {
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/cart" component={Cart} />
             <Route exact path="/login" component={Login} />
-            <Route exact path='/profile' component={UserAccount} />
+            <Route exact path="/profile" component={UserAccount} />
           </Switch>
         <Footer />
       </div>
