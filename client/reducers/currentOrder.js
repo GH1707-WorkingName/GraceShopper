@@ -58,7 +58,6 @@ export const deleteItem = (orderId, itemId) => dispatch =>{
 }
 
 export const addItem = (product, orderId) => dispatch => {
-  console.log("PRODUCT IN THE THUNK!", product)
   return axios.put(`/api/orders/${orderId}`, product)
     .then(res => res.data)
     .then(order => {

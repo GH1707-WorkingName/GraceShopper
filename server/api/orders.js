@@ -41,7 +41,6 @@ router.post('/:id', (req, res, next) => {
 })
 
 router.put('/:id', (req, res, next) => {
-  console.log("REQ BODY ", req.body)
   Order.findById(req.params.id)
     .then(order => {
       return order.addProduct(req.body.id)
