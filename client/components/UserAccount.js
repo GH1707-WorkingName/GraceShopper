@@ -64,13 +64,13 @@ export const mapStateToProps = state => {
   }
 }
 
-export const mapDispatchToProps = (dispatch, ownProps) => {
+export const mapDispatchToProps = dispatch => {
   return {
     handleUpdateUser(updatedUser) {
       dispatch(updateAccountThunk(updatedUser))
     },
     handleDeleteAccount() {
-      dispatch(deleteUserThunk(ownProps.history))
+      dispatch(deleteUserThunk())
     }
   }
 }

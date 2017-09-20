@@ -7,6 +7,7 @@ import Footer from './components/Footer';
 import Navbar from './components/Navbar';
 import Signup from './components/Signup';
 import Cart from './components/Cart'
+import Login from './components/Login'
 import SingleProduct from './components/SingleProduct'
 
 
@@ -26,6 +27,7 @@ export default class Index extends Component {
             <Route path='/products/:id' component={SingleProduct}/>
             <Route exact path="/signup" component={Signup} />
             <Route exact path="/cart" component={Cart} />
+            <Route exact path="/login" component={Login} />
           </Switch>
         <Footer />
       </div>

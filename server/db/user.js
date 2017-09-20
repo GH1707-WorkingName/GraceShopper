@@ -1,4 +1,4 @@
-const Sequelize = require ('sequelize');
+const Sequelize = require('sequelize');
 const crypto = require('crypto');
 const _ = require('lodash');
 const db = require('./_db');
@@ -25,7 +25,7 @@ const User = db.define('user', {
   },
   password: {
     type: Sequelize.STRING,
-    allowNull:false,
+    allowNull: false,
     validate: {
       len: [3, 20]
     }
@@ -50,7 +50,7 @@ const User = db.define('user', {
 });
 
 User.prototype.correctPassword = function (candidatePassword) {
-  return this.Model.encryptPassword(candidatePassword, this.salt) === this.password;
+  return this.constructor.encryptPassword(candidatePassword, this.salt) === this.password;
 };
 
 User.prototype.sanitize = function () {
