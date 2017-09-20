@@ -5,6 +5,7 @@ const SET_ORDER = 'SET_ORDER';
 const ADD_ITEM = 'ADD_ITEM';
 const DELETE_ITEM = 'DELETE_ITEM';
 const UPDATE_ITEM = 'UPDATE_ITEM';
+const REMOVE_ORDER = 'REMOVE_ORDER';
 
 // ACTION CREATORS
 const setOrder = order => {
@@ -23,6 +24,9 @@ const updateExistingItem = item => {
   return {type: UPDATE_ITEM, item}
 }
 
+export const removeOrder = () => {
+  return {type: REMOVE_ORDER}
+}
 
 // REDUCER
 export default (currentOrder = [], action) => {
@@ -35,6 +39,8 @@ export default (currentOrder = [], action) => {
       return currentOrder.filter(item => item.id !== action.itemId);
     case UPDATE_ITEM:
       return currentOrder.map(item => (item.id === action.item.id ? action.item : item));
+    case REMOVE_ORDER:
+      return {};
     default: return currentOrder;
   }
 }
