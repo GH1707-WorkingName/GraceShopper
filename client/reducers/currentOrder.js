@@ -48,8 +48,6 @@ export default (currentOrder={}, action) => {
   }
 }
 
-//THUNK
-//This thunk is not currently in use, but should be used when a user logs in 
 export const setCurrentOrder = order => dispatch => {
   return axios.get(`/api/orders`, userId)
     .then(res => res.data)
